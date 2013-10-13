@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<!--Objective 1:
+For this project, you'll modify the program we created in the lesson to add a class, .red, to the CSS, and then use jQuery to add the class to the <div> with the id "hello". You'll replace the existing line of code that sets the background-color of the <div> with the css() method.
+
+First, modify the CSS to add the following class:
+
+.red {
+    background-color: red;
+    color: white;
+}          
+Now, modify your code to use jQuery to add the class .red to the "hello" <div>. You'll need to look up the addClass() method in the jQuery documentation at jQuery.com. The addClass() method is in the "Manipulation" category; you can find the documentation for this method at http://api.jquery.com/addClass/.-->
+<head>
+  <title>First jQuery</title>
+  <meta charset="utf-8">
+  <style>
+    div {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+	.red {
+    background-color: red;
+    color: white;
+} 
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script>
+  
+  /*$ is short name for jQuery()*/
+  //call the main jquery function and pass the document object to it
+  //then take the jQuery object and call its .ready function
+  //Basically, $(document).ready(function() ~ window.onload, we will use the jquery version in this course.
+    $(document).ready(function() {
+        $("div#hello").html("Hello, world!!");
+       // $("div#hello").css("background-color", "red");
+		$("div#hello").addClass("red");
+    });
+  </script>
+</head>
+<body>
+    <h1>First jQuery</h1>
+    <div id="hello">
+    </div>
+</body>
+</html>   

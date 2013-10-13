@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <title>jQuery: Selecting Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .highlight {
+        background-color: yellow;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script>
+		$(document).ready(function() {
+			var $result = $("a");
+			alert($result.length + " elements matched the selection");
+			$result.addClass("highlight");
+			});
+  </script>
+</head>
+<body>
+  <h1>Selecting Elements</h1>
+  <div>
+      <h2>Sherlock Holmes</h2>
+      <h3>Links</h3>
+      <ul id="links">
+        <li class="first"><a href="http://en.wikipedia.org/wiki/Sherlock_holmes">Fictional Detective</a></li>
+        <li><a href="http://en.wikipedia.org/wiki/Sherlock_(TV_series)"><em>Sherlock</em>, TV series</a></li>
+        <li><a href="http://en.wikipedia.org/wiki/Sherlock_Holmes_(2009_film)"><em>Sherlock Holmes</em>, 2009 Film</a></li>
+        <li><a href="http://en.wikipedia.org/wiki/Sherlock_Holmes_(play)"><em>Sherlock Holmes</em>, play by William Gillette and Sir Arthur Conan Doyle</a></li>
+      </ul>
+
+      <h3>Excerpt from <em>Scandal in Bohemia</em></h3>
+      <h4>by <a href="http://en.wikipedia.org/wiki/Sir_Arthur_Conan_Doyle">Sir Arthur Conan Doyle</a></h4>
+      <p class="first">
+        It was close upon four before the door opened, and a drunken-looking groom,
+        ill-kempt and side-whiskered, with an inflamed face and disreputable clothes,
+        walked into the room. Accustomed as I was to my friend's amazing powers in
+        the use of disguises, I had to look three times before I was certain that
+        it was indeed he. With a nod he vanished into the bedroom, whence he emerged
+        in five minutes tweed-suited and respectable, as of old. Putting his hands
+        into his pockets, he stretched out his legs in front of the fire and laughed
+        heartily for some minutes.
+      </p>
+      <p>
+        "Well, <em>really</em>!" he cried, and then he choked and laughed again until he
+        was obliged to lie back, limp and helpless, in the chair.
+      </p>
+      <p>
+        "What is it?"
+      </p>
+      <p>
+        "It's quite too funny. I am sure you could never guess how I employed
+        my morning, or what I ended by doing."
+      </p>
+      <p>
+        "I can't imagine. I suppose that you have been watching the habits,
+        and perhaps the house, of Miss Irene Adler."
+      </p>
+  </div>
+</body>
+</html> 

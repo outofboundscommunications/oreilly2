@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+<!--
+Objective 1:
+For this project, you'll extend the code we wrote in the lesson to add a way to count elements in an HTML page. You'll use the HTML from the lesson with the addition of a small form element, containing two input elements: a button and a text input.
+
+Using this application, you'll be able to enter the tag name of an element, like a, p, or h2, click the Count button, and see the number of elements in the page that match that tag name. So, for example, if you enter a, you should get the result 5, because there are five <a> elements in the page.
+
+Your application needs to:
+
+1. Get the tag name of the element the user enters into the form, when the user clicks Count.
+2. Determine how many elements in the page match that tag name.
+3.Update the text content of the "results" <p> element to show the number of matching elements.
+4.Highlight all those matching elements in the page by adding the "highlight" class to those elements.
+5.Make sure that each time the user enters a new element into the form, the previous highlight is removed, so that only the new matching elements are highlighted.
+6. EXTRA! If you are extra motivated, find a way to include only those elements within the "include" <div> in the matching results (thus excluding everything in the page that's not in that <div>). So, if you enter "form" in the text input, the result should be 0, because the <form> element is not included in the "include" <div>.
+
+In the jQuery code, notice that in our document ready function, we select the "submitButton" input element, and add a click handler to the button, using the jQuery click() method. This method takes a function, doCount(), which handles getting the value from the text input. It does this by selecting the "elementToCount" text input, and using the val() method to get the value the user entered into the form. We've written the code to get and validate the text entered by the user; it's your job to write the code to count the number of elements that match, highlight them, and display the results in the "results" <p> element.
+
+-->
+<head>
+  <title>jQuery: Selecting Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .highlight {
+        background-color: yellow;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script>
+    $("document").ready(function() {
+        $("input#submitButton").click(doCount);
+    });
+    function doCount() {
+        // get the value from the "elementToCount" text input
+        var $elementToCount = $("input#elementToCount").val();
+        // validate the input
+        if ($elementToCount == null || 
+            $elementToCount.trim() == "") 
+        {
+            $("p#results").text("No element entered.");
+            return;
+        } 
+        
+        // your code here
+		//output the length of the jQuery object
+		alert('the element to count is: ' + $elementToCount);
+		alert($elementToCount.length + " elements matched the selection");
+    }
+  </script>
+</head>
+<body>
+  <h1>Selecting Elements</h1>
+  <form>
+      Count these elements: <input type="text" id="elementToCount">
+      <input type="button" value="Count" id="submitButton">
+  </form>
+    <p id="results"></p>
+    <div id="include">
+      <h2>Sherlock Holmes</h2>
+      <h3>Links</h3>
+      <ul id="links">
+        <li class="first"><a href="http://en.wikipedia.org/wiki/Sherlock_holmes">Fictional Detective</a></li>
+        <li><a href="http://en.wikipedia.org/wiki/Sherlock_(TV_series)"><em>Sherlock</em>, TV series</a></li>
+        <li><a href="http://en.wikipedia.org/wiki/Sherlock_Holmes_(2009_film)"><em>Sherlock Holmes</em>, 2009 Film</a></li>
+        <li><a href="http://en.wikipedia.org/wiki/Sherlock_Holmes_(play)"><em>Sherlock Holmes</em>, play by William Gillette and Sir Arthur Conan Doyle</a></li>
+      </ul>
+
+      <h3>Excerpt from <em>Scandal in Bohemia</em></h3>
+      <h4>by <a href="http://en.wikipedia.org/wiki/Sir_Arthur_Conan_Doyle">Sir Arthur Conan Doyle</a></h4>
+      <p class="first">
+        It was close upon four before the door opened, and a drunken-looking groom,
+        ill-kempt and side-whiskered, with an inflamed face and disreputable clothes,
+        walked into the room. Accustomed as I was to my friend's amazing powers in
+        the use of disguises, I had to look three times before I was certain that
+        it was indeed he. With a nod he vanished into the bedroom, whence he emerged
+        in five minutes tweed-suited and respectable, as of old. Putting his hands
+        into his pockets, he stretched out his legs in front of the fire and laughed
+        heartily for some minutes.
+      </p>
+      <p>
+        "Well, <em>really</em>!" he cried, and then he choked and laughed again until he
+        was obliged to lie back, limp and helpless, in the chair.
+      </p>
+      <p>
+        "What is it?"
+      </p>
+      <p>
+        "It's quite too funny. I am sure you could never guess how I employed
+        my morning, or what I ended by doing."
+      </p>
+      <p>
+        "I can't imagine. I suppose that you have been watching the habits,
+        and perhaps the house, of Miss Irene Adler."
+      </p>
+  </div>
+</body>
+</html>            
