@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+
+<!--
+Question 1: For this first quiz question, write a jQuery statement to match all list items with the class "love" and add the class "red."
+
+
+Question 2:
+For the same HTML as in question 1, write a jQuery statement to match all list items with the id "blueberries", and add the class "blue."
+
+
+Question 3:
+For the same HTML as in question 1, write a jQuery statement to match all list items with the word "love" in the "title" attribute, and add the "highlight" class.
+
+
+Question 4:
+For the same HTML as in question 1, write a jQuery statement to count the number of list items in the page.
+
+-->
+<head>
+  <title>jQuery Quiz: Selecting Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .red {
+      background-color: pink;
+    }
+    .blue {
+      background-color: lightblue;
+    }
+    .highlight {
+      background-color: lightyellow;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script>
+/*Question 1: For this first quiz question, write a jQuery statement to match all list items with the class "love" and add the class "red."*/
+	$(document).ready(function()	{
+		//select all elements with class .love
+		var $result = $(".love");
+		//and add the class .red
+		$result.addClass("red");
+	});
+	
+/*Question 2: For the same HTML as in question 1, write a jQuery statement to match all list items with the id "blueberries", and add the class "blue."*/
+$(document).ready(function()	{
+		//select all list item elements with the id=blueberries
+		var $result = $("li[id='blueberries']");
+		//and add the class .blue
+		$result.addClass("blue");
+	});
+	
+/*Question 3:
+For the same HTML as in question 1, write a jQuery statement to match all list items with the word "love" in the "title" attribute, and add the "highlight" class.*/
+
+$(document).ready(function()	{
+		//select all list item elements with 'love' in the title attribute
+		var $result = $("li[title*='love']");
+		//and add the class .highlight
+		$result.addClass("highlight");
+	});
+
+/*Question 4:
+For the same HTML as in question 1, write a jQuery statement to count the number of list items in the page.*/
+
+$(document).ready(function()	{
+		//select all list elements
+		var $result = $("li");
+		//and output the count into the paragraph element with the id='results'
+		$("p#results").text('the number of list item elements is: ' + ($result).length);
+	});
+	
+	
+/*
+
+Question 3, quiz 2:
+Write the jQuery to select:
+
+All <li> elements with the class "love"
+From those elements, NOT the <li> elements with the id "blueberries"
+For those elements, add the class "highlight"
+Write this jQuery statement in a single chain.
+
+*/
+
+$(document).ready(function()	{
+		//select all elements with class .love
+		var $result = $(".love");
+		//and add the class .red
+		$result.addClass("red");
+	});
+
+  </script>
+</head>
+<body>
+  <p id="results"></p>
+  <h1>Fruit I like</h1>
+  <ul>
+    <li id="blueberries" class="love" title="I love blueberries!">Blueberries</li>
+    <li id="apples" class="like" title="I like apples">Apples</li>
+    <li id="oranges" class="adore" title="I adore oranges">Oranges</li>
+    <li id="cherries" class="love" title="I love cherries!">Cherries</li>
+    <li id="bananas" class="like" title="I like bananas">Bananas</li>
+    <li id="avocado" class="love" title="I love avocadoes">Avocado</li>
+    <li id="strawberries" class="adore" title="I adore Strawberries">Strawberries</li>
+    </ul>
+</body>
+</html>        

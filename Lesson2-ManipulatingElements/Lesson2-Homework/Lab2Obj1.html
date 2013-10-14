@@ -34,7 +34,7 @@ In the jQuery code, notice that in our document ready function, we select the "s
     });
     function doCount() {
         // get the value from the "elementToCount" text input
-        var $elementToCount = $("input#elementToCount").val();
+		var $elementToCount = $("input#elementToCount").val();
         // validate the input
         if ($elementToCount == null || 
             $elementToCount.trim() == "") 
@@ -44,10 +44,23 @@ In the jQuery code, notice that in our document ready function, we select the "s
         } 
         
         // your code here
-		//output the length of the jQuery object
-		alert('the element to count is: ' + $elementToCount);
-		alert($elementToCount.length + " elements matched the selection");
+		//clear all previous styling from prior submits
+		$(".highlight").removeClass("highlight");
+		//fetch all the instances of the elementToCount  and store
+		//in the jQuery variable $myResults
+		var $myResults = $($elementToCount); // seems strange to put a Jquery variable  next to a jQuery function
+		//output the number of elements found
+		$("p#results").text('the number of elements matching your query is: ' + ($myResults).length);
+		//highlight the number of elements
+		$myResults.addClass("highlight");
     }
+	
+	/*$(document).ready(function() {
+			var $result = $("a");
+			alert($result.length + " elements matched the selection");
+			$result.addClass("highlight");
+			});*/
+				
   </script>
 </head>
 <body>
