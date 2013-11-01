@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+  <title>jQuery: Selecting Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .highlight {
+        background-color: yellow;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  
+  <!--   Filtering jQuery Selector Results -->
+  
+ <!--<script>
+	$(document).ready(function() {
+      $("input#filterButton").click(filterEven);
+    	});
+    //example function showing basic jQuery filtering (:odd)
+    var filterOdd = function() {
+      //use the :odd filter to select only the odd numbered elements
+	  $("li:odd").addClass("highlight");
+    };
+	var filterEven = function() {
+      $("li:even").addClass("highlight");
+    };
+
+  </script>-->
+  
+  <!--   The each() Method -->
+  
+<!--  <script>
+  $(document).ready(function() {
+      //select input element with id = "filterButton"
+	  //and add the click event function called "filterLength"
+      $("input#filterButton").click(filterLength);
+    });
+   //example function showing the each() method
+    var filterLength = function() {
+      //select all the <a> elements that have a 'data-length' attribute
+	  $("a[data-length]").each(function() {
+        //wrap 'this' with the $() function to convert 'this' to a jQuery object
+		//example function using the attr() method
+		//we select the value of the data-length attribute of the <a> element
+		//and store that string in the variable 'length'
+		var length = $(this).attr("data-length");
+		//split out the minutes from the seconds
+        var min = (length.split(":"))[0];
+		//convert value from string to integer
+        var min = parseInt(min);
+        if (min > 3) {
+          $(this).addClass("highlight");
+        }
+      });
+    };
+  </script>-->
+  
+  <!-- Filtering Form Elements -->
+    <script>
+  $(document).ready(function() {
+      //select input element with id = "filterButton"
+	  //and add the click event function called "filterChecked"
+      $("input#filterButton").click(filterChecked);
+    });
+   //example function showing filtering of a form element
+   var filterChecked = function() {
+      //selects all checked <input> elements that are nested within <li> elements
+	  //to which we then apply the 'highlight' class to the parent of the selected elements
+	 // $("li input:checked").parent().addClass("highlight");
+	  
+	  //Combining Filters
+	  //You can also combine form filters like :checked with other filters
+	  //This example below selects all <input> that are not checked, by adding the :not() filter function:
+	  $("li input:not(:checked)").parent().addClass("highlight");
+    };
+  </script>
+  
+</head>
+<body>
+  <h1>Playlist Mania</h1>
+  <form>
+    <input type="button" value="Filter" id="filterButton">
+    <h2>Selected Songs</h2>
+    <ul id="playlist">
+    </ul>
+
+    <h2>Albums to choose from</h2>
+    <div class="album">
+      <h3>The Dark Side of the Moon</h3>
+      <h4>Pink Floyd</h4>
+      <ol>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Speak_to_Me" data-length="1:30">Speak to Me</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Breathe_(Pink_Floyd_song)" data-length="2:43">Breathe</a></li>
+        <li><input type="checkbox"><a data-length="3:36">On the Run</a></li>
+        <li><input type="checkbox"><a data-length="7:01">Time</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/The_Great_Gig_in_the_Sky" data-length="4:36">The Great Gig in the Sky</a></li>
+        <li><input type="checkbox"><a data-length="6:22">Money</a></li>
+        <li><input type="checkbox"><a data-length="7:46">Us and Them</a></li>
+        <li><input type="checkbox"><a data-length="3:25">Any Colour You Like</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Brain_Damage_(song)" data-length="3:48">Brain Damage</a></li>
+        <li><input type="checkbox"><a data-length="2:03">Eclipse</a></li>
+      </ol>
+    </div>
+  </form>
+</body>
+</html>  

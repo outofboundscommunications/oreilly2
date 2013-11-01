@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<!--
+Selecting Elements by Content
+In the previous lesson, we selected elements based on content in an attribute, with selectors like a[href*='TV']. We can also select elements based on the element's content. For example, we might want to select all the songs that contain the word "Time." 
+
+-->
+<head>
+  <title>jQuery: Selecting Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .highlight {
+        background-color: yellow;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  
+  <script>
+	$(document).ready(function() {
+    	$("input#filterButton").click(filterContent);
+	});
+	
+	var filterContent = function() {
+    	//select the "containsContent" <input> element using its id, then we use
+		//val() to get the value of the text in that input element
+		var lookFor = $("input#containsContent").val();
+		//use the ":contains" filter to look for that phrase
+		//select all <a> elements that are nested within <li> elements, and that contain the letters "lookFor"
+    	$("li a:contains('" + lookFor + "')").addClass("highlight");
+	};
+  </script>
+  
+</head>
+<body>
+  <h1>Playlist Mania</h1>
+  <form>
+    <input type="text" id="containsContent">
+    <input type="button" value="Filter" id="filterButton">
+    <input type="button" value="Clear" id="clearButton">
+    <h2>Selected Songs</h2>
+    <ul id="playlist">
+    </ul>
+
+    <h2>Albums to choose from</h2>
+
+    <div class="album">
+      <h3>The Dark Side of the Moon</h3>
+      <h4>Pink Floyd</h4>
+      <ol>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Speak_to_Me" data-length="1:30">Speak to Me</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Breathe_(Pink_Floyd_song)" data-length="2:43">Breathe</a></li>
+        <li><input type="checkbox"><a data-length="3:36">On the Run</a></li>
+        <li><input type="checkbox"><a data-length="7:01">Time</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/The_Great_Gig_in_the_Sky" data-length="4:36">The Great Gig in the Sky</a></li>
+        <li><input type="checkbox"><a data-length="6:22">Money</a></li>
+        <li><input type="checkbox"><a data-length="7:46">Us and Them</a></li>
+        <li><input type="checkbox"><a data-length="3:25">Any Colour You Like</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Brain_Damage_(song)" data-length="3:48">Brain Damage</a></li>
+        <li><input type="checkbox"><a data-length="2:03">Eclipse</a></li>
+      </ol>
+    </div>
+  </form>
+</body>
+</html> 
