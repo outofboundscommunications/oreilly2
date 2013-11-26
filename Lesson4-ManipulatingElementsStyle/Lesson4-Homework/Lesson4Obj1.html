@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<!--
+In this project, you'll build a light switch that shows and hides some famous art work (a picture of my dog Tilla!), and also changes the light switch so it looks on or off. Here's the HTML and CSS for the page:
+
+Save the file in your /jQuery folder as light.html. You won't need to change any of the HTML or CSS to do this project; everything you need to do is in the jQuery code.
+
+Here's what you need to do:
+
+------------------------------------------------------------------------------------------------
+First, add jQuery code to give the <img> element in the "art" <div> the following CSS properties:
+A border-width of 5px
+A border-style of "solid"
+A border-color of "white"
+A top margin ("margin-top") of 20px
+A box shadow. You can use the property "box-shadow" and the property value: "2px 2px 9px grey". If you're using the most recent version of your browser, box-shadow should work fine (it's a fairly new addition to CSS but all the browsers now support it).
+-----------------------------------------------------------------------------------------------
+If the light switch is on, then it has the CSS class "on" (this class doesn't need to be defined for you to add/remove it!).
+If the light switch is on, it does not have the class "flipped". If the light switch is off, it does have this class.
+If the light switch is off, you should hide the "art" <div> (it's too dark to see it!) and change the background-color of the <body> element to "black".
+When the light switch is on, you should see the art, and also the background-color of the <body> element is white.
+Save the file in your /jQuery folder as light.js. Turn in both light.html and light.js.
+-->
+<head>
+  <title>jQuery and CSS Project: A Light Switch</title>
+  <meta charset="utf-8">
+  <style>
+    body {
+      margin: 20px;
+    }
+    div#lightswitch {
+      width: 150px;
+    }
+    .flipped {
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script src="light.js"></script>
+  
+</head>
+<body>
+  <div id="lightswitch" class="on">
+  <img src="http://efreeman.userworld.com/jQuery/lightSwitch.png"
+     alt="A lightswitch">
+  </div>
+  <div id="art">
+  <img src="http://efreeman.userworld.com/jQuery/Tilla.JPG"
+     alt="A photo of my dog, Tilla">
+  </div>
+</body>
+</html>       

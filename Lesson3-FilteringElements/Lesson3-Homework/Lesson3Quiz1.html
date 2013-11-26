@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+  <title>jQuery: Selecting Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .highlight {
+        background-color: yellow;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+ 
+  <script>
+  	$(document).ready(function() {
+      //select input element with id = "filterButton"
+	  //and add the click event function called "filterChecked"
+      $("input#filterButton").click(filterChecked);
+	  $("input#clearButton").click(clearAll);
+    	});
+	   //example function showing filtering of a form element
+	   var filterChecked = function() {
+		  //selects all checked <input> elements that are nested within <li> elements
+		  //to which we then apply the 'highlight' class to the parent of the selected elements
+		 //$("li input:checked").parent().addClass("highlight");
+		 $("li input:checked").next().addClass("highlight");
+		};
+		var clearAll = function() {
+			//$("*").removeClass("highlight");
+			var $highlightedElements = $(".highlight");
+			$highlightedElements.removeClass("highlight");
+			$("form").get(0).reset();
+		};
+		
+  </script>
+  
+</head>
+<body>
+
+<pre><strong>Question 1:</strong>
+In the lesson, we wrote a function, filterChecked(), to add a highlight to all checked items. We used the parent() method to get 
+the li element that is the parent of the matching input element, to highlight (since if we highlight the checkbox, we won't see much).
+
+Suppose we modify the code like this:
+
+var filterChecked = function() {
+    $("li input:checked").<s>parent()</s>next().addClass("highlight");
+};    
+Describe which element is highlighted by the filterChecked() function now. Use the documentation at jQuery.com to look up the 
+next() method and describe what it does and how we're using it in this function.</pre>
+
+Answer:
+<pre>With the next() function, you navigate to the next sibling of each element in the set of matched elements in the DOM.
+
+In this case, we use our selector to find the checked input boxes, then the next() function selects the immediate following element,
+which in this case is the a element. That a element is then highlighted.
+</pre>
+
+<pre><strong>Question 2:</strong>
+In the code below, instead of "*", what other selector could we use to select all the highlighted elements in the page 
+(that is, all the elements with the class "highlight")?
+
+var clearAll = function() {
+    $("*").removeClass("highlight");
+    $("form").get(0).reset();
+    $("form input:checked").attr("checked", false);
+}; </pre>
+
+Answer:
+<pre>var $highlightedElements = $(".highlight");
+$highlightedElements.removeClass("highlight");</pre>
+
+  <h1>Playlist Mania</h1>
+  <form>
+    <input type="button" value="Filter" id="filterButton">
+    <input type="button" value="Clear" id="clearButton">
+    <h2>Selected Songs</h2>
+    <ul id="playlist">
+    </ul>
+
+    <h2>Albums to choose from</h2>
+    <div class="album">
+      <h3>The Dark Side of the Moon</h3>
+      <h4>Pink Floyd</h4>
+      <ol>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Speak_to_Me" data-length="1:30">Speak to Me</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Breathe_(Pink_Floyd_song)" data-length="2:43">Breathe</a></li>
+        <li><input type="checkbox"><a data-length="3:36">On the Run</a></li>
+        <li><input type="checkbox"><a data-length="7:01">Time</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/The_Great_Gig_in_the_Sky" data-length="4:36">The Great Gig in the Sky</a></li>
+        <li><input type="checkbox"><a data-length="6:22">Money</a></li>
+        <li><input type="checkbox"><a data-length="7:46">Us and Them</a></li>
+        <li><input type="checkbox"><a data-length="3:25">Any Colour You Like</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Brain_Damage_(song)" data-length="3:48">Brain Damage</a></li>
+        <li><input type="checkbox"><a data-length="2:03">Eclipse</a></li>
+      </ol>
+    </div>
+  </form>
+</body>
+</html>  

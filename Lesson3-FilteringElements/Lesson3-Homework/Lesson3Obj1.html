@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+Objective 1:
+
+In the lesson, we created a Playlist application you can use to add songs to a playlist. We wrote a function addToPlaylist() to add songs to the playlist that looks at all the checked items in the form, and creates a new list item in the playlist for each checked item song.
+
+If you choose the same song twice to add to the Playlist, the song gets added twice! So your job in this project is to modify the code so that if a song is already in the playlist, it doesn't get added.
+
+Here's an outline of what you'll need to do:
+
+For each song selected (either by checking a checkbox, or by filtering)...
+	(1) If the song name already exists as the content of one of the <li> elements in the "playlist," don't add that song to the list.
+	(2) Remember that what's returned by a jQuery selector is an array of elements that match that selector. If no elements match, the array is empty (has a length of zero).
+-->
+<head>
+  <title>jQuery: Selecting Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .highlight {
+        background-color: yellow;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script>
+	$(document).ready(function() {
+    	//this is the click event for the filter button
+		$("input#filterButton").click(filterContentAndCheck);
+		//this is the click event for the clear button
+		$("input#clearButton").click(clearAll);
+		//this is the click event for the add button
+		$("input#addButton").click(addToPlaylist);
+	});
+	
+	var clearAll = function() {
+      $("*").removeClass("highlight");
+      $("form").get(0).reset();
+	  $("form input:checked").attr("checked", false);
+    };
+	
+	var filterContentAndCheck = function() {
+      //when user clicks on filter button, this function is run
+	  //first, we assign user input value in text box to variable 'lookFor'
+	  var lookFor = $("input#containsContent").val();
+	  //second, we clear whatever was previously in text box and selected in boxes
+      clearAll();
+	  //third, we select the parent list item of any anchor text element that contains the user text
+	  //and add the 'highlight' class to it's parent's li item
+      $("li a:contains('" + lookFor + "')").parent().addClass("highlight");
+	  //and also make its parent's checkbox be checked
+      $("li.highlight input:checkbox").attr("checked", true);
+    };
+	
+	var addToPlaylist = function() {
+    //when the user clicks on the add to playlist button, this function is run.
+	//this function adds the songs, selected by checkbox, to the play list area but it makes sure to not add any duplicates
+
+	$("form input:checked").parent().each(function() {
+        //step1: select the song to add
+		var song = $(this).text();
+
+		//step 2: select the current playlist
+		var currentPlaylist = $("ul#playlist li").text();
+		console.log(currentPlaylist);
+		
+		//step 3: check to see if song is already in playlist
+		//use the :contains filter to look for song in list
+		var $checkPlayList = $("ul#playlist:contains('" + song + "')");
+		//check the length of the resulting jquery array, if zero, then we can add to list
+		var length = $checkPlayList.length;
+		console.log('the number of elements is " ' + length);
+		if (length ==0)	{
+			$("ul#playlist").append("<li>" + song + "</li>");
+		}
+		else	{
+			alert('sorry, ' + song  + ' is already in the playlist!');
+		}
+    });
+}; 
+  </script>
+</head>
+<body>
+  <h1>Playlist Mania</h1>
+  <form>
+    <input type="text" id="containsContent">
+    <input type="button" value="Filter" id="filterButton">
+    <input type="button" value="Clear" id="clearButton">
+     <input type="button" value="Add to Playlist" id="addButton">
+    <h2>Selected Songs</h2>
+    <ul id="playlist">
+    </ul>
+
+    <h2>Albums to choose from</h2>
+
+    <div class="album">
+      <h3>The Dark Side of the Moon</h3>
+      <h4>Pink Floyd</h4>
+      <ol>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Speak_to_Me" data-length="1:30">Speak to Me</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Breathe_(Pink_Floyd_song)" data-length="2:43">Breathe</a></li>
+        <li><input type="checkbox"><a data-length="3:36">On the Run</a></li>
+        <li><input type="checkbox"><a data-length="7:01">Time</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/The_Great_Gig_in_the_Sky" data-length="4:36">The Great Gig in the Sky</a></li>
+        <li><input type="checkbox"><a data-length="6:22">Money</a></li>
+        <li><input type="checkbox"><a data-length="7:46">Us and Them</a></li>
+        <li><input type="checkbox"><a data-length="3:25">Any Colour You Like</a></li>
+        <li><input type="checkbox"><a href="http://en.wikipedia.org/wiki/Brain_Damage_(song)" data-length="3:48">Brain Damage</a></li>
+        <li><input type="checkbox"><a data-length="2:03">Eclipse</a></li>
+      </ol>
+    </div>
+  </form>
+</body>
+</html>     

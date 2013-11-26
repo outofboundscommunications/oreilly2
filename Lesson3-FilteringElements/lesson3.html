@@ -66,12 +66,14 @@
    var filterChecked = function() {
       //selects all checked <input> elements that are nested within <li> elements
 	  //to which we then apply the 'highlight' class to the parent of the selected elements
-	 // $("li input:checked").parent().addClass("highlight");
+	// $("li input:checked").parent().addClass("highlight");
+	 
+	 $("li input:checked").parent()next().addClass("highlight");
 	  
 	  //Combining Filters
 	  //You can also combine form filters like :checked with other filters
 	  //This example below selects all <input> that are not checked, by adding the :not() filter function:
-	  $("li input:not(:checked)").parent().addClass("highlight");
+	 // $("li input:not(:checked)").parent().addClass("highlight");
     };
   </script>
   

@@ -9,48 +9,47 @@
     }
   </style>
   <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+ 
   <script>
-	$(document).ready(function() {
-    	$("input#filterButton").click(filterContentAndCheck);
-		$("input#clearButton").click(clearAll);
-		$("input#addButton").click(addToPlaylist);
-	});
-	var clearAll = function() {
-      $("*").removeClass("highlight");
-      $("form").get(0).reset();
-	  $("form input:checked").attr("checked", false);
-    };
-	var filterContentAndCheck = function() {
-      var lookFor = $("input#containsContent").val();
-      clearAll();
-      $("li a:contains('" + lookFor + "')").parent().addClass("highlight");
-      $("li.highlight input:checkbox").attr("checked", true);
-    };
-	
-	var addToPlaylist = function() {
-      $("form input:checked").parent().each(function() {
-        //use the jQuery text() method to get the text content of the <li> element, so we wrap this with $() to convert it to a jQuery object, 
-		//and then call text(), and store the result in the variable song
-		var song = $(this).text();
-        $("ul#playlist").append("<li>" + song + "</li>");
-      });
-    };
-
+  	$(document).ready(function() {
+      //select input element with id = "filterButton"
+	  //and add the click event function called "filterChecked"
+      $("input#filterButton").click(filterChecked);
+    	});
+	   //example function showing filtering of a form element
+	   var filterChecked = function() {
+		  //selects all checked <input> elements that are nested within <li> elements
+		  //to which we then apply the 'highlight' class to the parent of the selected elements
+		 $("li input:checked").parent().addClass("highlight");
+		 //$("li input:checked").next().addClass("highlight");
+		};
   </script>
+  
 </head>
 <body>
+
+<pre><strong>Question 1:</strong>
+In the lesson, we wrote a function, filterChecked(), to add a highlight to all checked items. We used the parent() method to get 
+the li element that is the parent of the matching input element, to highlight (since if we highlight the checkbox, we won't see much).
+
+Suppose we modify the code like this:
+
+var filterChecked = function() {
+    $("li input:checked").<s>parent()</s>next().addClass("highlight");
+};    
+Describe which element is highlighted by the filterChecked() function now. Use the documentation at jQuery.com to look up the 
+next() method and describe what it does and how we're using it in this function.</pre>
+
+<pre>With the next() function, you navigate to the next sibling of each element in the set of matched elements in the DOM.</pre>
+
   <h1>Playlist Mania</h1>
   <form>
-    <input type="text" id="containsContent">
     <input type="button" value="Filter" id="filterButton">
-    <input type="button" value="Clear" id="clearButton">
-     <input type="button" value="Add to Playlist" id="addButton">
     <h2>Selected Songs</h2>
     <ul id="playlist">
     </ul>
 
     <h2>Albums to choose from</h2>
-
     <div class="album">
       <h3>The Dark Side of the Moon</h3>
       <h4>Pink Floyd</h4>
@@ -69,4 +68,4 @@
     </div>
   </form>
 </body>
-</html>     
+</html>  
