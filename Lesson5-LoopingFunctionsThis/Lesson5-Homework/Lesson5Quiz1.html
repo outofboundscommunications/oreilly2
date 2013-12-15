@@ -26,52 +26,48 @@
 <body>
 
 <pre><strong>Question 1:</strong>
-Look at the following jQuery:
-
-$("div").width(300);
-console.log("The width of the div is: " + $("div").width());
-console.log("The width of the div is: " + $("div").css("width"));    
-What two values will you see in the alert for the width? Explain the difference.
+Describe in your own words what each() does.
 
 </pre>
 
 Answer:
 <pre>
-The width of the div is: 300
-The width of the div is: 300px 
+the each() function is a way to loop thru each element of a jquery object of elements you
+have selected.
 
-quoted from jquery documentation:
+it is usually used when you want to make more complicated changes to elements selected by a selector than just changing their color or highlighting them.
 
-The difference between .css(width) and .width() is that the latter returns a unit-less pixel value (for example, 400) while the former 
-returns a value with units intact (for example, 400px). The .width() method is recommended when an element's 
-width needs to be used in a mathematical calculation.
-
-If you're going to do math with the result, you may want to use .width(), since it doesn't have the "px" on the end.
+each() is the preferred way to loop in JQuery and it compares to the standard javascript 'for' loop.
 
 </pre>
 
 <pre><strong>Question 2:</strong>
-
-If you wanted to get the width of an element, including the padding, the border, and the margin, what jQuery 
-method would you call?</pre>
-
-Answer:
-<pre>
-Use the .outerWidth() method, set the boolean parameter to 'true' to add the margin value:
-
-console.log("The width of the div with padding and border and margin is: " + $("div").outerWidth( true ));
 </pre>
 
-<pre><strong>question 3:</strong>
-What does the toggleClass() method do?
+<pre>
+In the last version of our code from the lesson:
+
+$("document").ready(function() {
+    createLinks();
+});
+
+var createLinks = function() {
+    $("a").each(addLink);
+};
+var addLink = function(i, el) {
+    var $el = $(el);
+    $("section#links ul").append("<li>Link " + (i+1) + ":<a href=\"" +
+        $el.attr("href") + "\">" + $el.text() +
+            "</a></li>");
+}; 
+
+Explain in your own words what el, $(el) and $el are.
+
+1. el is the current, actual element in the selector object.
+2. $el is a jquery variable that is set equal to the wrapped $(el) jQuery object element
+3. $(el) is the wrapped jQuery object element
 
 </pre>
-<pre>
-Answer:
-
-</pre>In the simplest version, if an element in the matched set of elements already has the class, then it is removed; 
-if an element does not have the class, then it is added. 
-
 <div> hello </div
 ></body>
 </html>  
