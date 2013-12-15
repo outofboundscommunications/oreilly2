@@ -1,13 +1,8 @@
-<!--
-Save it in your /jQuery folder as hotdog1.html, and add a complete jQuery program that changes the background-color CSS property of the odd numbered rows of the table to be "lightgrey." You are not allowed to use the ":odd" filter!
-
-Hint: You can use the "mod" math function % to help determine if a row is odd or even if you need to.
-
--->
-
 <!doctype html>
+<!--
+add a complete jQuery program that changes the background-color CSS property of the odd numbered rows of the table to be "lightgrey," using the ":odd" filter.
+-->
 <html>
-
 <head>
   <title>jQuery Each() Project: Striping a table</title>
   <meta charset="utf-8">
@@ -19,25 +14,9 @@ Hint: You can use the "mod" math function % to help determine if a row is odd or
   <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
   <script>
   	$(document).ready(function() {
-    	countRows();
+    	$("tr:odd").addClass('highlight');
 	});
 	
-	var countRows = function()	{
-		//select only the rows that have cells (not the header row)
-		$("tr>td").parent().each(function(i,el)	{
-			//to make first row ==1, add one to the index
-			var rowNumber = i+1;
-			console.log("row number: " + rowNumber + " element: " + $(el).text());
-			//to figure out if odd or even, use modulus function
-			var oddOrEven = rowNumber%2;
-			console.log('odd or even? ' + oddOrEven);
-			//if odd row, Mod ==1
-			if (oddOrEven ==1)	{
-				//since odd row, add the highlight
-				$(el).addClass("highlight");
-			}
-		});
-	}
   </script>
 </head>
 <body>
@@ -56,7 +35,7 @@ Hint: You can use the "mod" math function % to help determine if a row is odd or
     The Nathan's Hot Dog Eating Contest is an annual American 
     <a data-type="html" href="http://en.wikipedia.org/wiki/Competitive_eating">competitive-eating competition</a>, 
     which is run as a publicity gathering event by Shea Communications. It is held each 
-    <a data-type="html" href="http://en.wikipedia.org/wiki/Independence_Day_(United_States)">July 4</a> at 
+    <a data-type="html" href="http://en.wikipedia.org/wiki/Independence_Day_(United_States)">>July 4</a> at 
     <a data-type="pdf" href="http://en.wikipedia.org/wiki/Nathan%27s_Famous">Nathan's Famous Corporation</a>'s
     original, and best-known restaurant at the corner of Surf and Stillwell Avenues in
     <a data-type="html" href="http://en.wikipedia.org/wiki/Coney_Island">Coney Island</a>,  
@@ -66,4 +45,4 @@ Hint: You can use the "mod" math function % to help determine if a row is odd or
     million viewers watched it live on ESPN television when Joey Chestnut ate 62 hot dogs and buns.
   </p>
 </body>
-</html>    
+</html>
