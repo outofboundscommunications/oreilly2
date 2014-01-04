@@ -7,11 +7,12 @@ When you select a color, the program will set the background-color of a <div> el
 
 Create a new jQuery file, menu.js, for your program. You'll need to:
 
+Modules to build:
 1. Create an event handler to handle when the mouse is hovering over the top level menu items (Color and Shape).
-2. Make the submenu (the <ul> elements with the "submenu" class) visible when the mouse is hovering over a top-level menu item.
-3. Create an event handler to handle clicks on the submenu items.
-4. Use the id of the submenu to determine if the user is clicking on a color or a shape.
-5. Use the text content of the submenu items to determine the values to set in your CSS properties.
+	1a.Make the submenu (the <ul> elements with the "submenu" class) visible when the mouse is hovering over a top-level menu item.
+2. Create an event handler to handle clicks on the submenu items.
+	2a. Use the id of the submenu to determine if the user is clicking on a color or a shape.
+	2b. Use the text content of the submenu items to determine the values to set in your CSS properties.
 
 Hint: To create a circle from a <div>, use the CSS "border-radius" property. If you set the size of the border-radius to one half the width of the <div>, you'll create a circle. To re-create the default square shape, you can set the border-radius back to "none."
 
