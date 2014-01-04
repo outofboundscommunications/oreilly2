@@ -1,0 +1,94 @@
+<!doctype html>
+<!--
+Objective 2:
+For this project, you will write a jQuery program to create an interactive menu with two dropdown menu options, one for color (Pink, Yellow, Green, or Blue) and one for shape (Square or Circle). 
+
+When you select a color, the program will set the background-color of a <div> element displayed next to the menu. When you select a shape, the program will set the shape of the <div> element using the border-radius CSS property. 
+
+Create a new jQuery file, menu.js, for your program. You'll need to:
+
+1. Create an event handler to handle when the mouse is hovering over the top level menu items (Color and Shape).
+2. Make the submenu (the <ul> elements with the "submenu" class) visible when the mouse is hovering over a top-level menu item.
+3. Create an event handler to handle clicks on the submenu items.
+4. Use the id of the submenu to determine if the user is clicking on a color or a shape.
+5. Use the text content of the submenu items to determine the values to set in your CSS properties.
+
+Hint: To create a circle from a <div>, use the CSS "border-radius" property. If you set the size of the border-radius to one half the width of the <div>, you'll create a circle. To re-create the default square shape, you can set the border-radius back to "none."
+
+-->
+<html>
+<head>
+  <title>jQuery: Events Project 2</title>
+  <meta charset="utf-8">
+  <style>
+    ul {
+      list-style-type: none;
+    }
+    ul.menu {
+      position: relative;
+    }
+    ul.menu > li {
+      position: relative;
+      float: left;
+      padding: 5px 20px 5px 20px;
+      background-color: #ccc;
+      border-right: 1px solid black;
+    }
+    ul.menu > li:last-child {
+      border-right: none;
+    }
+    ul.menu > li:hover {
+      background-color: #F3D673;
+    }
+    ul.menu ul {
+      margin-left: 0px;
+      padding-left: 0px;
+      visibility: hidden;
+      position: absolute;
+      top: 100%;
+      left: 0px;
+    }
+    ul.menu ul > li {
+      padding: 5px 20px 5px 20px;
+      background-color: #f6f6f6;
+    }
+    ul.menu ul > li:hover {
+      background-color: #F3D673;
+    }
+    li {
+      cursor: pointer;
+    }
+    div {
+      float: left;
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      margin-left: 100px;
+      text-align: center;
+      vertical-align: middle;
+      font-family: Helvetica, sans-serif;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script src="menu.js"> </script>
+</head>
+<body>
+<ul class="menu">
+<li>Colors
+    <ul id="color" class="submenu">
+    <li>Pink</li>
+    <li>Yellow</li>
+    <li>Green</li>
+    <li>Blue</li>
+    </ul>
+</li>
+<li>Shapes
+    <ul id="shape" class="submenu">
+    <li>Square</li>
+    <li>Circle</li>
+    </ul>
+</li>
+</ul>
+<div></div>
+</body>
+</html>    

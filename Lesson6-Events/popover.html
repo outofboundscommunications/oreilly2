@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <title>jQuery: Company Info Popover</title>
+  <meta charset="utf-8">
+  <style>
+.companyRollover {
+    cursor: pointer;
+    background-color: lightgray;
+    border: 1px solid #333333;
+}
+.companyData {
+    position: absolute;
+    background-color: white;
+    border: 2px solid gray;
+    padding: 10px;
+    box-shadow: 2px 1px 2px gray;
+    z-index: 1;
+}
+.companyDataTriangle {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-left: 2px solid gray;
+    border-top: 2px solid gray;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    z-index: 2;
+}
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script src="popover.js"> </script>
+</head>
+<body>
+  <div id="main">
+    <h1>Online Courses from O'Reilly Media</h1>
+    <p>
+The <span class="companyRollover" id="OST">O'Reilly School of Technology</span>
+was built as a place to give aspiring programmers and administrators
+like you a ladder into the Information Technology and Systems
+industry. With unique, online, hands-on courses leading to
+Certificates of Professional Development, OST will help you
+gain an edge in your career -- on your own time, at your own
+pace. When you have completed our courses, you will not only
+have a Certificate, but you will also have a portfolio of
+completed projects to show for your effort.
+    </p>
+  </div>
+  <div class="companyData" data-ticker="OST" data-price="100">
+    <h2>O'Reilly School of Technology (OST)</h2>
+    <h3>U.S.: Fake Nasdaq</h3>
+    <p>Stock Price: $100</p>
+    <h3>Recent Articles</h3>
+    <ul>
+      <li><a href="http://blog.oreillyschool.com/2012/09/ost-author-has-a-close-encounter-on-mars-with-the-rover-curiosity.html">Close Encounter with Mars Rover</a></li>
+      <li><a href="http://blog.oreillyschool.com/2012/04/automatic-grading-misses-the-point.html">Automatic grading misses the mark</a></li>
+    </ul>
+  </div>
+  <div class="companyDataTriangle">
+  </div>
+</body>
+</html>         
