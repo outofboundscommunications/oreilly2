@@ -10,8 +10,10 @@ $(document).ready(function()	{
 	
 	//when the mouse rolls over the list item, the function looks for an unordered list within it. If one is found, it sets the style 
 	//property visibility to visible.
-	function openSubMenu() {
+	function openSubMenu(evt) {
 		$(this).find('ul').css('visibility', 'visible');
+		//var $this = $(this);
+		//console.log("this is: " + $this.text());
 	};
 	
 	//This closeSubMenu function just does the opposite of the openSubMenu function, it sets the visibility style element of the 
@@ -21,11 +23,11 @@ $(document).ready(function()	{
 	};
 	
 	function addColorShape(evt)	{
-		console.log(evt.target);
 		var $this = $( this );
-		console.log($this);
-		console.log($this.text());
-		console.log($this.parentElement());
+		console.log("this parent is: " + evt.parent());
+		var myId = $this.attr("id");
+		console.log("the id is: " + myId);
+		$("div").css("border-radius","50px");
 	};
 
 });
