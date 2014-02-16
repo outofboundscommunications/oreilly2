@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <title>jQuery: Manipulating and Traversing Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .highlight {
+      background-color: lightyellow;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script> 
+    $(document).ready(function() {
+    $("body").html("<p>This is some text. <a href=\"#\">Click here!</a></p>");
+    $("body").append("<p>I'm another paragraph!</p>");    
+    $("p").wrap("<article></article>");
+    $("p").before("<h1>Title</h1>");
+    $("body").append("<article><div>I'm a div in an article</div></article>");
+    $("body").prepend("<h1>I'm the title of the page</h1>");
+    $("a").click(function() {
+        $(this).parent().addClass("highlight");
+    });   
+	
+	$("article div").html("<form><input type=\"checkbox\" value=\"One\"><span>I'm next to One</span><br><input type=\"checkbox\" value=\"Two\"><span>I'm next to Two</span></form>");
+    $("input:checkbox").click(function() {
+        $(this).next().toggleClass("highlight");
+    });  
+	$("input:checkbox").first().next().text("I am still next to One!!"); 
+	$("input:checkbox").last().next().text("I am still next to One!!"); 
+});
+  </script>
+</head>
+<body>
+</body>
+</html>    
