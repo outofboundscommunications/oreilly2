@@ -29,7 +29,9 @@ Hint: You can use the class "visible" to track which cards are turned over (the 
 */
 
 $("document").ready(function(){
+	//PART 1 - RANDOMLY INSERT IMAGES ON PAGE AND HIDE THEM /////////////////////////////////////////////////////////////////
 	//define array to hold images
+	
 	var images =["http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/cheese.gif","http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/eggs.gif","http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/kitchen_blender.gif","http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/tea.gif","http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/kitchen_collander.gif","http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/kitchen_teapot.gif"];
 	//define array to hold images that we use in the grid
 	var imagesused = [];
@@ -54,28 +56,41 @@ $("document").ready(function(){
 		var $myImages = $("img");
 		$myImages.addClass('hidden');
 	});
+	//PART 2 - SET UP LOGIC TO PLAY GAME, CLICK EVENTS, ETC. //////////////////////////////////////////////////////////////////////
+	//define click event for 'play again' button at bottom of page
 	
+	$myButton = $("input").click(resetScreen);
+	
+	function resetScreen()	{
+		console.log('we need to remove all the images from the screen and then randomly replace them again');
+		console.log('the number of images presently is: ' + $("img").length);
+		$myImages = $("img").remove()
+		console.log('we removed the images...');
+		console.log('the number of images now is: ' + $("img").length);
+	}
 	//define variable to store points of user during game
 	var points =0;
-	
 	//define click event function when user clicks on cell to 'turn over/flip' a 'card'
 	//when user clicks on a cell (div), (that does not have class 'row') show the image
 	$('.container div:not(.row)').click(showImage);
 	
 	function showImage() {
-		//1. STORE THE IMAGE CLICKED ON
+		
+		//2.1. STORE THE IMAGE CLICKED ON
 		var $myImage = $(this).find('img')
 		console.log($myImage);
 		
-		//2. CHECK TO SEE IF TWO CARDS ARE UP AND IF SO, PROCESS
+		//2.2. CHECK TO SEE IF TWO CARDS ARE UP AND IF SO, PROCESS
 		//create a selector to select all images that are visible but not 'done' (up but not matched)
 		var $cardsUp = $("img.visible");
 		console.log($cardsUp.length);
 		//count how many elements are in the selector, if two, then we have two cards up that we need to check for a match
 		if ($cardsUp.length == 2)	{
+			//assign the first image to a variable so we can check against second image
 			var $firstCard = $cardsUp.eq(0);
 			var $firstImage = $firstCard.attr("src");
 			console.log($firstImage);
+			//assing the second image to a variable so we can check against the first image
 			var $secondCard = $cardsUp.eq(1);
 			var $secondImage = $secondCard.attr("src");
 			console.log($secondImage);
@@ -91,7 +106,13 @@ $("document").ready(function(){
 				console.log("need to add 2 points to user acct");
 				points = points+2;
 				alert('good job. you now have: ' + points + ' points');
+				//count how many images are of class 'done', if all 12 then game over...
+				var $myDoneImages = $("img.done");
+				console.log('the number of images matched is: ' + $myDoneImages.length);
+				if ($myDoneImages.length == 12)	{
+					alert('game over!!!' + 'you got a total of: ' + points + ' points.');
 				}
+			}
 			else	{
 				//they didnt match so change their class to 'invisible' (they are invisible again)
 				$firstCard.removeClass("visible");
@@ -99,16 +120,15 @@ $("document").ready(function(){
 				$secondCard.removeClass("visible");
 				$secondCard.addClass("hidden");
 				//remove points from the user's account
+				//but only remove if current points >=2, otherwise, you will have negative number
 				if (points >=2)	{
-					points = points-2;
+					points = points-1;
+					alert('sorry. you now have: ' + points + ' points');
 				}
-				alert('sorry. you now have: ' + points + ' points');
+				alert('sorry. you still have: ' + points + ' points');
 			}
 		}
-		else if ($cardsUp.length ==12)	{
-			alert('game over... nice job. you got: ' + points + ' points');
-		}
-		//3. FLIP THE IMAGE CLICKED ON
+		//2.3. FLIP THE IMAGE CLICKED ON
 		if ($myImage.hasClass("hidden"))	{	
 			$myImage.removeClass("hidden");
 			$myImage.addClass("visible");
