@@ -27,63 +27,95 @@ Your program needs to:
 Hint: You can use the class "visible" to track which cards are turned over (the images are visible), "hidden" to track which cards are not turned over (the images are hidden), and "done" to track which cards have been matched successfully.
 
 */
+//define global variable to store points of user during game
+var points =0;
 
+////// onload main function calls /////////////////////////////////
 $("document").ready(function(){
-	//PART 1 - RANDOMLY INSERT IMAGES ON PAGE AND HIDE THEM /////////////////////////////////////////////////////////////////
-	//define array to hold images
-	
-	var images =["http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/cheese.gif","http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/eggs.gif","http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/kitchen_blender.gif","http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/tea.gif","http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/kitchen_collander.gif","http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/kitchen_teapot.gif"];
-	//define array to hold images that we use in the grid
-	var imagesused = [];
-	//select all the divs that do not have class 'row'
-	$('.container div:not(.row)').each(function() {
-		//for each, generate a random number from 0 to length of image array
-		var rand = Math.floor(Math.random() * images.length);
-		//go ahead and add that [images] element to the page
-		$(this).append('<img src="' + images[rand] + '"/>');
-		//check to see if we have used the image already
-		//if we have already used the image once, this time makes twice
-		//so we have to remove the image from the images array so we can't use it again
-		if (imagesused.indexOf(images[rand]) != -1) {
-			//we used the image already so remove it from the images array
-			images.splice(rand, 1);
-			}
-		else {
-			//we hadn't used the image before so add that image to the [imagesused] array
-			imagesused.push(images[rand]);
-			}
-		//select all the images and hide them
-		var $myImages = $("img");
-		$myImages.addClass('hidden');
-	});
-	//PART 2 - SET UP LOGIC TO PLAY GAME, CLICK EVENTS, ETC. //////////////////////////////////////////////////////////////////////
 	//define click event for 'play again' button at bottom of page
-	
+	//when the user clicks the 'Play again' button, (1)all images are removed and (2) new images are randomly loaded and (3)hidden
 	$myButton = $("input").click(resetScreen);
 	
+	console.log('on page load, the points is: ' + points);
+	
+	//define click event function when user clicks on cell to 'turn over/flip' a 'card'
+	//when user clicks on a cell (div), (that does not have class 'row') show the image
+	//pass in the points variable to keep track of user points
+	$('.container div:not(.row)').click(showImage);
+		
+	//call the function to (randomly) load all the images on the page
+	addImages();
+	
+	});
+	
+	//function to load images 
+	function addImages()	{
+		//define array to hold images
+		var images =["http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/cheese.gif",
+		"http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/eggs.gif",
+		"http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/kitchen_blender.gif",
+		"http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/tea.gif",
+		"http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/kitchen_collander.gif",
+		"http://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/kitchen_teapot.gif"];
+		
+		//define array to hold images that we use in the grid, we use this to track images used so we dont use more than twice when
+		//filling grid initially
+		var imagesused = [];
+		
+		//okay, lets get started now and load the images into the page grid
+		//create selector for all the elements we want to populate with images
+		//we do this by selecting all the divs that do not have class 'row'
+		//and use the each() function to iterate thru the divs selected
+		$('.container div:not(.row)').each(function() {
+			//for each, generate a random number from 0 to length of image array
+			var rand = Math.floor(Math.random() * images.length);
+			//go ahead and add that [images] element to the page
+			$(this).append('<img src="' + images[rand] + '"/>');
+			//check to see if we have used the image already, if we have this time makes twice
+			//thus we have to remove the image from the images array so we can't use it again
+			if (imagesused.indexOf(images[rand]) != -1) {
+				//we used the image already so remove it from the images array
+				images.splice(rand, 1);
+				}
+			else {
+				//we hadn't used the image before so add that image to the [imagesused] array
+				imagesused.push(images[rand]);
+				}
+		});
+		//okay now we have all the images inserted in the grid on page
+		//we just need to hide the so we can start the game
+		//select all the images
+		var $myImages = $("img");
+		//hide them
+		$myImages.addClass("hidden");
+		console.log('after loading the images, the points are: ' + points);
+	}
+ /////////end of addImages() function
+
+	//SET UP LOGIC TO PLAY GAME, CLICK EVENTS, ETC. //////////////////////////////////////////////////////////////////////
+	//click event function when user clicks on 'Play again' button at bottom of screen
 	function resetScreen()	{
 		console.log('we need to remove all the images from the screen and then randomly replace them again');
 		console.log('the number of images presently is: ' + $("img").length);
 		$myImages = $("img").remove()
 		console.log('we removed the images...');
 		console.log('the number of images now is: ' + $("img").length);
+		//now we add new images
+		console.log('we now add new images');
+		addImages();
+		$myImages = $("img");
+		console.log('the number of images now is: '+ $("img").length);
 	}
-	//define variable to store points of user during game
-	var points =0;
-	//define click event function when user clicks on cell to 'turn over/flip' a 'card'
-	//when user clicks on a cell (div), (that does not have class 'row') show the image
-	$('.container div:not(.row)').click(showImage);
 	
+	//click even function when user plays game by clicking on hidden image
 	function showImage() {
-		
 		//2.1. STORE THE IMAGE CLICKED ON
 		var $myImage = $(this).find('img')
-		console.log($myImage);
 		
 		//2.2. CHECK TO SEE IF TWO CARDS ARE UP AND IF SO, PROCESS
 		//create a selector to select all images that are visible but not 'done' (up but not matched)
 		var $cardsUp = $("img.visible");
-		console.log($cardsUp.length);
+		console.log('the number of cards up is: ' +$cardsUp.length);
 		//count how many elements are in the selector, if two, then we have two cards up that we need to check for a match
 		if ($cardsUp.length == 2)	{
 			//assign the first image to a variable so we can check against second image
@@ -134,7 +166,5 @@ $("document").ready(function(){
 			$myImage.addClass("visible");
 		}
 
-}
-});
-
+	}
 
