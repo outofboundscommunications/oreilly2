@@ -1,0 +1,137 @@
+
+<!--
+question 1
+
+<!doctype html>
+<html>
+<head>
+  <title>jQuery: Manipulating and Traversing Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .highlight {
+      background-color: lightyellow;
+    }
+    table {
+      border-spacing: 5px;
+    }
+    table tr td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script> 
+    $("document").ready(function() {
+        $("td").click(function() {
+            var $item = $("td").last();
+            if ($(this).is($item)) {
+                $(this).addClass("highlight");
+            }
+        });
+    });
+  </script>
+</head>
+<body>
+  <table>
+    <tr>
+    	<td>0, 0</td>
+        <td>0, 1</td>
+        <td>0, 2</td>
+    </tr>
+    <tr>
+    	<td>1, 0</td>
+        <td>1, 1</td>
+        <td>1, 2</td>
+    </tr>
+    <tr>
+    	<td>2, 0</td>
+        <td><span>2, 1</span></td>
+        <td>2, 2</td>
+    </tr>
+  </table>
+</body>
+</html>    
+
+-->
+
+<!--question 2
+
+<!doctype html>
+<html>
+<head>
+  <title>jQuery: Manipulating and Traversing Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .highlight {
+      background-color: lightyellow;
+    }
+    table {
+      border-spacing: 5px;
+    }
+    table tr td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script> 
+    $("document").ready(function() {
+        if ($("td").has("span").length > 0) {
+            alert("I found a span!");
+			alert('the span length is: ' + ($("td").has("span").length));
+        }    
+    });
+  </script>
+</head>
+<body>
+  <table>
+    <tr><td>0, 0</td><td>0, 1</td><td>0, 2</td></tr>
+    <tr><td>1, 0</td><td>1, 1</td><td>1, 2</td></tr>
+    <tr><td>2, 0</td><td><span>2, 1</span></td><td>2, 2</td></tr>
+  </table>
+</body>
+</html> 
+
+-->
+
+
+<!doctype html>
+<html>
+<head>
+  <title>jQuery: Manipulating and Traversing Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .highlight {
+      background-color: lightyellow;
+    }
+    table {
+      border-spacing: 5px;
+    }
+    table tr td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+ <!--<script> 
+	$("document").ready(function() {
+		$("td").find("span").addClass("highlight");  
+	});    
+  </script>-->
+  
+  <script>
+      $("document").ready(function() {
+        $("span", "td").addClass("highlight");  
+    });
+	
+	</script> 
+
+</head>
+<body>
+  <table>
+    <tr><td>0, 0</td><td>0, 1</td><td>0, 2</td></tr>
+    <tr><td>1, 0</td><td>1, 1</td><td>1, 2</td></tr>
+    <tr><td>2, 0</td><td><span>2, 1</span></td><td>2, 2</td></tr>
+  </table>
+</body>
+</html>  

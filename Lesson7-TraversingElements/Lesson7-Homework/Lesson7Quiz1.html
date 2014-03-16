@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+  <title>jQuery: Manipulating and Traversing Elements</title>
+  <meta charset="utf-8">
+  <style>
+    .highlight {
+      background-color: lightyellow;
+    }
+    table {
+      border-spacing: 5px;
+    }
+    table tr td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+ 
+  <script>
+  	/*question 1 js
+	$("document").ready(function() {
+    $("div").html("<p>This is some text</p>");
+    $("div").append("<p>I'm another paragraph!</p>");
+	});
+	*/
+	
+	//question 2 js
+	/*$("document").ready(function() {
+    console.log($("form input").first().next().next());
+	});*/
+	
+	//question 3 js
+	$("document").ready(function() {
+        $("body").click(function() {
+            $("td").eq(4).addClass("highlight");
+        }); 
+    })
+	
+  </script>
+  
+</head>
+<body>
+
+
+<strong>Question 1:</strong>
+<p>Explain the difference between html() and append(). Describe what happens when you change the append() method to html() in the code below.</p>
+
+<img src="question1.JPG" width="400" height="67">
+
+<u><strong><p>Answer:</p></strong></u>
+
+<ul>
+<li>html() allows you to set the html content of the selected element(s)</li>
+<li>append() inserts content as the last child of the selected element (or elements, if there are more than one).</li>
+</ul>
+
+
+<strong>Question 2:</strong>
+
+<p>In the following HTML, what element is selected with the code: $("form input").first().next().next()?</p>
+
+<form>
+   <input type="checkbox" value="One">
+      <span>I'm next to One</span><br>
+   <input type="checkbox" value="Two">
+      <span>I'm next to Two</span>
+</form>   
+<img src="question2.JPG" width="307" height="94">
+
+<u><strong><p>Answer:</p></strong></u>
+
+<p>It selectes the br element </p>
+
+
+<strong>question 3:</strong>
+<p>Look at the HTML and jQuery below.</p>
+<p>What is the content of the <td> element that's highlighted by that code?</p>
+
+ <table>
+    <tr><td>0, 0</td><td>0, 1</td><td>0, 2</td></tr>
+    <tr><td>1, 0</td><td>1, 1</td><td>1, 2</td></tr>
+    <tr><td>2, 0</td><td><span>2, 1</span></td><td>2, 2</td></tr>
+  </table>
+
+<img src="question3.JPG" width="509" height="488">
+
+
+<p>Answer:</p>
+
+<p>The content that is highlighted by the code is the 5th table cell in the selector or the middle cell in the middle row that is labeled '1,1'.</p>
+
+</body>
+</html>  
