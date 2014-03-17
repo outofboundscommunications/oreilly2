@@ -115,6 +115,7 @@ $("document").ready(function(){
 		//2.2. CHECK TO SEE IF TWO CARDS ARE UP AND IF SO, PROCESS
 		//create a selector to select all images that are visible but not 'done' (up but not matched)
 		var $cardsUp = $("img.visible");
+		console.log($cardsUp);
 		console.log('the number of cards up is: ' +$cardsUp.length);
 		//count how many elements are in the selector, if two, then we have two cards up that we need to check for a match
 		if ($cardsUp.length == 2)	{
