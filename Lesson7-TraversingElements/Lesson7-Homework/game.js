@@ -109,10 +109,18 @@ $("document").ready(function(){
 	
 	//click even function when user plays game by clicking on hidden image
 	function showImage() {
+		
 		//2.1. STORE THE IMAGE CLICKED ON
 		var $myImage = $(this).find('img')
 		
-		//2.2. CHECK TO SEE IF TWO CARDS ARE UP AND IF SO, PROCESS
+		//2.2. FLIP THE IMAGE CLICKED ON
+		if ($myImage.hasClass("hidden"))	{	
+			$myImage.removeClass("hidden");
+			$myImage.addClass("visible");
+		}
+		
+		
+		//2.3. CHECK TO SEE IF TWO CARDS ARE UP AND IF SO, PROCESS
 		//create a selector to select all images that are visible but not 'done' (up but not matched)
 		var $cardsUp = $("img.visible");
 		console.log($cardsUp);
@@ -160,11 +168,6 @@ $("document").ready(function(){
 				}
 				alert('sorry. you still have: ' + points + ' points');
 			}
-		}
-		//2.3. FLIP THE IMAGE CLICKED ON
-		if ($myImage.hasClass("hidden"))	{	
-			$myImage.removeClass("hidden");
-			$myImage.addClass("visible");
 		}
 
 	}
