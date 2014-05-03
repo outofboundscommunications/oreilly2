@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <title>jQuery: Playing with the Viewport</title>
+  <meta charset="utf-8">
+  <style>
+body {
+    position: relative;
+}
+div {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(158, 190, 166);
+    border: 1px solid black;
+}
+div#two {
+    width: 600px;
+}
+div#four {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 70px;
+    height: 70px;
+    background-color: lightyellow;
+}
+ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+div#popover {
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: 3px 3px 5px black;
+}
+  </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script src="viewport.js"></script>
+</head>
+<body>
+  <div id="one">One</div>
+  <div id="two">Two</div>
+  <div id="three">
+    Three
+    <div id="four">Four</div>
+  </div>
+  <div id="popover"> </div>
+</body>
+</html>    
