@@ -1,0 +1,76 @@
+<!doctype html>
+
+<!--
+Objective 2:
+In this project, you'll place <div> elements randomly in the window. The trick is, you need to make sure that the elements 
+don't go past either the right side or the bottom of the browser window. You can use the width and the height of 
+the window to determine the left and top positions for each <div> element, using all the available space in the window, 
+but not going over.
+-->
+<html>
+<head>
+<title>jQuery: Placing Random Elements</title>
+<meta charset="utf-8">
+<style>
+  div {
+      position: absolute;
+      background-color: lightblue;
+      opacity: .5;
+      width: 100px;
+      height: 100px;
+      box-shadow: 3px 3px 5px gray;
+  }
+  
+</style>
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+
+  //get window dimensions
+  var $windowWidth = $( window ).width();
+  var $windowHeight = $( window ).height();
+  
+  //log window dimensions to console
+  console.log('window width is: ' +$windowWidth);
+  console.log('window height is: ' +$windowHeight);
+  
+  //define the box area in pixels (100 x 100px)
+  var boxArea = 10000;
+  
+  //calculate area of window and how many boxes can fit
+  var windowArea = $windowWidth * $windowHeight;
+  var numBoxesToDisplay = (windowArea/boxArea).toFixed(0);
+  
+  //log number of boxes to console
+  console.log('number of boxes to display is: ' +numBoxesToDisplay);
+  
+  var $x = Math.floor(Math.random() * ($windowWidth-101));
+  console.log($x);
+  var $y = Math.floor(Math.random() * ($windowHeight-101));
+  console.log($y);
+  $("body").append("<div></div>").css({
+	  position: "absolute",
+	  top: $y,
+	  left: $x
+  });
+  /*for (var i = 0; i <20; i++) {
+	  $("body").append("<div></div>");
+	  $myDiv = $("div");
+	  $divWidth = $myDiv.width();
+	  $divHeight = $myDiv.height();
+	  $divPosition = $myDiv.position();
+	  console.log($divWidth);
+	  console.log($divHeight);
+	  console.log($divPosition);
+	  console.log($myDiv.offset());
+  }*/
+  });
+</script>
+</head>
+
+<body>
+
+</body>
+
+</html> 
