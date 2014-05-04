@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+  <title>Lesson 8 - Quiz 1 - Positioning elements on page</title>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+<style>
+	div {
+		position: relative;
+		width: 200px;
+		height: 200px;
+		background-color: rgb(158, 190, 166);
+		border: 1px solid black;
+		padding:5px;
+		margin:5px;
+	}
+  
+ </style>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+ 
+  <script>
+  	//question 1 js
+	$("document").ready(function() {
+    	$myVar = $(".question1");
+		console.log($myVar);
+		$widthPlusPadding = $myVar.innerWidth();
+		console.log($widthPlusPadding);
+		console.log($myVar.position());
+		console.log($myVar.offset());
+	});
+
+	
+  </script>
+  
+</head>
+<body>
+
+
+<strong>Question 1:</strong>
+<p>If you want to get the width of an element plus the padding, what method would you use?</p>
+
+
+<u><strong><p>Answer:</p></strong></u>
+
+<p>.innerwidth();</p>
+
+<strong>Question 2:</strong>
+<p>Describe in your own words what the position() method returns.</p>
+
+
+<u><strong><p>Answer:</p></strong></u>
+
+<p>the left and top attributes of an element</p>
+
+<strong>Question 3:</strong>
+<p>Explain in your own words the difference between the position() and offset() methods.</p>
+
+
+<u><strong><p>Answer:</p></strong></u>
+
+<p>position() returns the relative left and top attributes of an element, relative to it's parent.</p>
+<p>offset() returns the left and top attributes of an alement, relative to the entire document.</p>
+
+<hr>
+<div class='container'>
+	<div class="question1">hello how are you</div>
+</div>
+
+
+
+
+</body>
+</html>  

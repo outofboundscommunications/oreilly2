@@ -12,7 +12,7 @@ but not going over.
 <title>jQuery: Placing Random Elements</title>
 <meta charset="utf-8">
 <style>
-  div {
+  .box {
       position: absolute;
       background-color: lightblue;
       opacity: .5;
@@ -25,47 +25,72 @@ but not going over.
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 
 <script>
-  $(document).ready(function() {
+  
+//box object to store the location of each box/div we need to place on page
+//each box will have a left (x) and top (y) positions
+function Box($x,$y) {
+	this.$x = $x;
+	this.$y = $y;
+  }
+// DEFINE AN ARRAY TO STORE THE BOX OBJECTS /////////////////////////////
+var boxes = [];
+  
+$(document).ready(function() {
 
-  //get window dimensions
-  var $windowWidth = $( window ).width();
-  var $windowHeight = $( window ).height();
+$("body").append("<div class=\"container\"></div>");
+//get window dimensions
+var $windowWidth = $( window ).width();
+var $windowHeight = $( window ).height();
+
+//log window dimensions to console
+console.log('window width is: ' +$windowWidth);
+console.log('window height is: ' +$windowHeight);
+
+//define the box area in pixels (100 x 100px)
+var boxArea = 10000;
+
+//calculate area of window and how many boxes can fit
+var windowArea = $windowWidth * $windowHeight;
+var numBoxesToDisplay = (windowArea/boxArea).toFixed(0);
+
+//log number of boxes to console
+console.log('number of boxes to display is: ' +numBoxesToDisplay);
   
-  //log window dimensions to console
-  console.log('window width is: ' +$windowWidth);
-  console.log('window height is: ' +$windowHeight);
+/*var $x = Math.floor(Math.random() * ($windowWidth-101));
+console.log($x);
+var $y = Math.floor(Math.random() * ($windowHeight-101));
+console.log($y);
+$("body").append("<div></div>").css({
+	position: "absolute",
+	top: $y,
+	left: $x
+});*/
   
-  //define the box area in pixels (100 x 100px)
-  var boxArea = 10000;
+//now run a loop to create all the boxes' locations on the page
+//and store in the boxes array
   
-  //calculate area of window and how many boxes can fit
-  var windowArea = $windowWidth * $windowHeight;
-  var numBoxesToDisplay = (windowArea/boxArea).toFixed(0);
-  
-  //log number of boxes to console
-  console.log('number of boxes to display is: ' +numBoxesToDisplay);
-  
-  var $x = Math.floor(Math.random() * ($windowWidth-101));
-  console.log($x);
-  var $y = Math.floor(Math.random() * ($windowHeight-101));
-  console.log($y);
-  $("body").append("<div></div>").css({
-	  position: "absolute",
-	  top: $y,
-	  left: $x
-  });
-  /*for (var i = 0; i <20; i++) {
-	  $("body").append("<div></div>");
-	  $myDiv = $("div");
-	  $divWidth = $myDiv.width();
-	  $divHeight = $myDiv.height();
-	  $divPosition = $myDiv.position();
-	  console.log($divWidth);
-	  console.log($divHeight);
-	  console.log($divPosition);
-	  console.log($myDiv.offset());
-  }*/
-  });
+for (var i = 0; i <numBoxesToDisplay; i++) {
+  var $x = Math.floor(Math.random() * ($windowWidth-2));
+  var $y = Math.floor(Math.random() * ($windowHeight-2));
+  var $myBox = new Box($x,$y);
+  boxes.push($myBox);
+}
+
+//now place all those boxes onto the page
+drawBoxes(boxes);
+
+function drawBoxes(boxes)	{
+	for (var i = 0; i <numBoxesToDisplay; i++) {
+		console.log('for box #' + i + ' the x dimension is: ' + boxes[i].$x + ' the y dimension is: ' + boxes[i].$y);
+		//add the box divs to the container div
+		$("<div></div>").appendTo(".container").addClass("box").css({
+			top: boxes[i].$y,
+			left: boxes[i].$x
+		})
+	}
+}
+
+});
 </script>
 </head>
 
