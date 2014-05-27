@@ -10,23 +10,25 @@ $(document).ready(function() {
     $("div#content div#home").show();
 
     // click handler for all tabs
-    $("ul#tabs li a").click(function(e) {
-        var $link = $(this);
-        // prevent the a link from causing a page load
-        e.preventDefault();
-        // get the currently selected tab, and associated div
-        var selectedTabName = $("ul#tabs li.selected a").attr("href");
-        var $selectedDiv = $("div#" + selectedTabName);
-        // get the newly selected tab, and associated div
-        var tabName = $(this).attr("href");
-        var $div = $("div#" + tabName);
-        // hide the current content
-        $selectedDiv.hide("slow", function() {
-            // show the new content
-            $div.show("slow");
-            // update the currently selected tab
-            $("ul#tabs li.selected").removeClass("selected");
-            $link.parent().addClass("selected");
-        });
-    });
+	$("ul#tabs li a").click(function(e) {
+		//var $link = $(this);
+		// prevent the a link from causing a page load
+		e.preventDefault();
+		// get the currently selected tab, and associated div
+		var selectedTabName = $("ul#tabs li.selected a").attr("href");
+		var $selectedDiv = $("div#" + selectedTabName);
+		// get the newly selected tab, and associated div
+		var tabName = $(this).attr("href");
+		var $div = $("div#" + tabName);
+		// hide the current content
+		$selectedDiv.hide("slow", function() {
+		// show the new content
+			console.log('hello');
+			$div.show("slow");
+			// update the currently selected tab
+			$("ul#tabs li.selected").removeClass("selected");
+			//$link.parent().addClass("selected");
+			$(this).parent().addClass("selected");
+		});
+	});
 });
