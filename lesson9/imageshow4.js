@@ -43,39 +43,52 @@ var timer;
 
 //if it is start, run the function to show the next image (and set the value of the button to stop)?
 //if it is stop, clear the timer(and set the value of the button to start)?
-    
- 
 
 //create a function to show the next image
 function showImage() {
    //select all the images
     $theImages = $("img");
-    $firstImage = $theImages.first().attr("src");
-    $nextImage =  $theImages.next().attr("src");
-    $lastImage =  $theImages.last().attr("src");
+    $firstImage = $theImages.first();
+    $nextImage =  $theImages.next();
+    $lastImage =  $theImages.last();
     console.log($theImages);
-    console.log('the first image is: ' + $firstImage);
-    console.log('the next image is: '  + $nextImage);
-    console.log('the last image is: ' +  $lastImage);
+    console.log('the first image is: ' + $firstImage.attr("src"));
+    console.log('the next image is: '  + $nextImage.attr("src"));
+    console.log('the last image is: ' +  $lastImage.attr("src"));
     //inside that function, collect the image with the class .top
-    $topImage = $("img.top").attr('src');
-    console.log ('top image is: ' + $topImage);
+    $topImage = $("img.top");
+    console.log ('top image is: ' + $topImage.attr("src"));
    //if the top image is the .last() image, then the .next() image should be the .first() image! 
-   if ($topImage == $lastImage) {
-       $topImage = $firstImage;
-       console.log('the new top image is: ' + $topImage);
-       
+   if ($topImage.attr('src') == $lastImage.attr('src')) {
+       $topImage.hide();
+       $topImage.removeClass("top");
+       $topImage.addClass("hidden");
+       $firstImage.show();
+       $firstImage.removeClass("hidden");
+       $firstImage.addClass("top");
    }
    //Otherwise, it's the .next() image (the one that follows the top image).
     else {
-        $topImage = $nextImage;
-        console.log('the new top image is: ' + $topImage);
+        $topImage.hide();
+        $topImage.removeClass("top");
+        $topImage.addClass("hidden");
+        $nextImage.show();
+        $nextImage.removeClass("hidden");
+        $nextImage.addClass("top");
     }
-    
-//fade, or hide the caption?
-//.show() the image which your condition determined to be next?
-//fade or hide the top image, swapping the top and hidden classes on it and the next one?
-//changing the caption text and showing it
 
-//And how might that function call itself every 2 seconds or more (1 second is very brief)?
+//After you've checked which image is top/first/last how might you 
+//use methods such as .fadeOut(), .fadeIn(), .show(), and .hide() to control when the caption and the 
+//images appear/disappear?
+/*
+ Since .fadeOut() can take an anonymous function, how might that function be used on the top image to:
+- hide the top image
+- remove the top class/add the hidden class, so the top image is no longer the top; and it's now hidden
+- and for the next image, do the reverse
+- be sure the .text() of the caption is equal to the "alt" attribute of the next image
+
+At the very end of showImage(), how might you use .setTimeout() to have showImage() call itself every two seconds?
+//
+*/
+    
 }
