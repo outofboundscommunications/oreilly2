@@ -43,15 +43,27 @@
 
 
 <strong>Question 1:</strong>
-<p>In the lesson, after we added the complete function as an argument to the hide() method call to make sure that the showing animation didn't begin until after the hiding animation had completed, we had to save the value of $(this) in a variable, $link, and use this variable to reference the link you clicked on to select a new tab. Why did we have to do this?</p>
+<p>In the lesson, after we added the complete function as an argument to the hide() 
+    method call to make sure that the showing animation didn't begin until after the 
+    hiding animation had completed, we had to save the value of $(this) in a variable, $link, 
+    and use this variable to reference the link you clicked on to select a new tab. 
+    Why did we have to do this?</p>
 
 
 <u><strong><p>Answer:</p></strong></u>
 
-<p>it has to do with how the <strong>$(this)</strong> variable works with <strong>scope</strong>. since we are trying to access the parent element of the link clicked on (this) from within another function, the this variable is not available, it is out of scope. But if you assign the this variable value to $link, then you can access that value from within another function. </p>
+<p>it has to do with how the concept of variable scope. 
+    Since we are trying to access the parent element of the link clicked on (this), from within another 
+    function, the $(this) variable is not available, it is out of scope. But if you assign the $(this) variable 
+    value to $link, then you can access the value of that variable from within another function. </p>
+    <p>Also, since the value of the $(this) variable is not used right away, but is called as part of the
+    complete function, you need to store that value so you can then use it.</p>
 
 <strong>Question 2:</strong>
-<p>In the lesson, in the section where we added the animation to the tabs, we kept <span class="green">this code</span> separate from the <span class="blue">complete function that hides the div element</span> (the function argument to the slideDown() method).</p>
+<p>In the lesson, in the section where we added the animation to the tabs, 
+    we kept <span class="green">this code</span> separate from the <span class="blue">
+    complete function that hides the div element</span> (the function argument to the 
+    slideDown() method).</p>
 
 <pre>
 
@@ -101,7 +113,11 @@ Why did we do this?</pre>
 
 <u><strong><p>Answer:</p></strong></u>
 
-<p>the left and top attributes of an element</p>
+<p>If you dont do that, and put that animation inside the complete function that hides, shows the div content,
+    you get really strange behavior because the tab animation then doesnt occur until after that div hiding
+    and showing occurs which is not what you want. you want a smooth animation that occurs at the same time.
+    </p>
+                                                                                                            
 
 
 
