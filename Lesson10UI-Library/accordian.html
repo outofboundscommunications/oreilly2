@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <title>jQuery UI: Widgets</title>
+  <meta charset="utf-8">
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/cupertino/jquery-ui.css">
+  <script>
+    $(document).ready(function() {
+        $("#accordion").accordion({
+            collapsible: true,
+            header: "> div > h1"
+        }).sortable({
+            axis: "y",
+            handle: "h1"
+        });
+    });
+  </script>
+</head>
+<body>
+  <div id="accordion">
+    <div class="group">
+      <h1>Home</h1>
+      <p>This is the Home section.</p>
+    </div>
+    <div class="group">
+      <h1>About</h1>
+      <p>
+        This is the About section. This web page uses the jQuery UI
+        accordion widget. You can choose from many widgets,
+        as well as effects and interactions, to make your web page
+        more interesting and fun, with the jQuery UI library.
+      </p>
+    </div>
+    <div class="group">
+      <h1>Solutions</h1>
+      <p>This is the Solutions section.</p>
+    </div>
+    <div class="group">
+      <h1>Blog</h1>
+      <p>This is the Blog section.</p>
+    </div>
+    <div class="group">
+      <h1>Contact</h1>
+      <p>This is the Contact section.</p>
+    </div>
+  </div>
+</body>
+</html>          
