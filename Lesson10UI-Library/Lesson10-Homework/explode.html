@@ -1,41 +1,6 @@
 <!--
-In this project, you'll create a game using the "explode" effect from the jQuery UI library. Sound like fun?
 
-
-1. As soon as you load the page, your game will start putting squares at random locations on 
-the screen, starting with one square, and doubling at each round of the game. 
-2. When you click on a square it will "explode" using the jQuery UI "explode" effect. 
-3. You must explode all the squares on the screen before the timer runs out. 
-4. Since there will be twice as many squares at each round, it will get more difficult to do this! 
-5. If you don't explode all the squares before the timer runs out, the game is over and you'll see an 
-alert indicating how many rounds you managed to get through before the game ended.
-        
-Save the file in your /jQuery folder as explode.html. Add your jQuery directly to this file in 
-the empty <script> element, provided.
-
-Your program should do the following:
-
-1. Use a timer (use setTimeout() and clearTimeout() like we did in a previous lesson) set to 5 seconds 
-for each round of the game.
-2. Use jQuery to add the proper number of squares at each round of the game. The first round has 1 
-square, the second round 2, the third round 4, and so on (the number of squares doubles at each round).
-3. DONE - Make sure all the boxes appear within the page (that is, they don't overlap the edges of the browser 
-window).
-4. DONE - Initially, the squares added to the screen have the "box" class. As soon as the user clicks on a 
-square, change the class to "exploding."
-5. DONE -Use the "explode" effect when the user clicks on a square. You can get information about how to use 
-the explode effect at:
-
-The API documentation for the explode effect - http://api.jqueryui.com/explode-effect/
-The API documentation for the effect() method - http://api.jqueryui.com/effect/
-
-6. DONE - After a box has finished exploding, remove the element from the page entirely. Note that while the 
-element appears to disappear after it's been exploded, jQuery has set the display property to "none," 
-so it's still there, but you just can't see it. You'll want to actually remove it from the DOM.
-7. When you're checking to see if the user has exploded every square, you can use this trick: 
-check to see if there are any elements on the page with the "box" class. If there aren't any, 
-you know the user has exploded all the squares!
-8. When your explode game is working to your satisfaction, hand in explode.html.
+lets test and figure out how the timer function works
 -->
 
 <!doctype html>
@@ -67,94 +32,26 @@ div.exploding {
 <!--add javascript here -->
 <script>
 
+//get window dimensions
+var $windowWidth = $( window ).width();
+var $windowHeight = $( window ).height();
+//log window dimensions to console
+console.log('window width is: ' +$windowWidth);
+console.log('window height is: ' +$windowHeight);
+//set number of boxes
+var numBoxes=1;
+
 $(document).ready(function ()  {
 
-  //add the basic container div to the page
-  $("body").append("<div class=\"container\"></div>");
-
-  //declare timer variable	
-  var timer;
-  
-  //initialize counter to keep track of round
-  var round =1;
-  
-  //initialize counter for number of boxes to display
-  var numBoxes=1;
-  console.log('num boxes is:' + numBoxes);
-  
-  //initialize timer for each round (5 sec per round)
-  var timer = 0;
-  
-  //get window dimensions
-	var $windowWidth = $( window ).width();
-	var $windowHeight = $( window ).height();
-	
-	//log window dimensions to console
-	console.log('window width is: ' +$windowWidth);
-	console.log('window height is: ' +$windowHeight);
-  
-  //call function to calculate # boxes to display
- // calcNumBoxesToDisplay(numBoxes);
-  //call function to draw boxes
- // displayBoxesToScreen(numBoxes,$windowWidth,$windowHeight);
-
-   //create click event for box so user can blow up box by clicking on it
-	$myBox = $("div.box");
-	console.log($myBox);
-    $myBox.click(function() {
-		$myBox.removeClass("box");
-		//set box class to 'exploding'
-		$myBox.addClass("exploding");
-		//use jquery 'exploding effect to 'blow up' the box
-		$myBox.toggle("explode");
-		//remove box completely from DOM
-		$myBox.remove();
-	});
-	
-	  
-//function to capture the input "button", using an if condition inside its anonymous function 
-//to determine whether the value is stop or start? 
-    //select the button 
-  $myButton = $(":button");
-  $myButton.click(function() {
-	   if($myButton.attr('value') == 'start')  {  
-			console.log('start');
-			/////run function to start game/round//////
-			startRound_init();
-			//set button value to 'stop'
-			$myButton.attr('value','stop');
-		}
-	   else {
-		   console.log('stop');
-		   //clear the timer
-		   clearTimeout(timer);
-		   //set button value to 'start'
-		   $myButton.attr('value','start');
-		   }                                
-   });
+function mysetTimeoutFunction()	{
+	console.log('this is the timeout function');
+	calcNumBoxesToDisplay(numBoxes);
+	displayBoxesToScreen(numBoxes,$windowWidth,$windowHeight);
+	setTimeout(mysetTimeoutFunction,2000);
+}
+mysetTimeoutFunction();
 
 }); 
-  
-  
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
-  function startRound_init()	{
-	  setTimeout('startRound()',5000);
-  }
-  
-  function startRound()	{
-	var round = 1;
-	var numBoxesToDisplay = 1;
-	//get window dimensions
-	var $windowWidth = $( window ).width();
-	var $windowHeight = $( window ).height();
-	//log window dimensions to console
-	console.log('window width is: ' +$windowWidth);
-	console.log('window height is: ' +$windowHeight);
-	  
-	  //calcNumBoxesToDisplay(numBoxes);
-	 // displayBoxesToScreen(numBoxes,$windowWidth,$windowHeight);
-  }
   
   /////function to figure out number of boxes to display/////
   function calcNumBoxesToDisplay(numBoxes)	{
@@ -190,43 +87,11 @@ $(document).ready(function ()  {
   } 
 
 
-//if it is start, run the function to show the next image (and set the value of the button to stop)?
-//if it is stop, clear the timer(and set the value of the button to start)?
-		 
-  ////call counter function/timer/////
-	  //start countdown for 5 seconds
-	  //define click handler so that each time user clicks on box:
-			//set box class to 'exploding'
-			//use jquery 'exploding effect to 'blow up' the box
-			//remove box completely from DOM
-			//call function to check and see if they have won
-			  //checkToSeeIfRoundOver;
-			//check to see if they have blown up all the boxes for that round
-				//are there any div elements with box class still in DOM?
-					  //yes
-						  //user hasnt finished round yet
-						  //continue round
-					  //no
-						  //user won round
-						  //stop timer
-						  //alert user they won
-						  //go to next round
-						  //set counter to round+1
-	  //at end of five seconds
-		  //if all boxes displayed during round are blown up
-			  //user wins
-			  //increment counter by one
-			  //start next round
-		  //else
-			  //user loses
-			  //alert user to how many rounds they completed
-			  //alert that game is over
+
     </script>
 
 </head>
 <body>
-<form>
-	<input type="button" value="start">
-</form>
+
 </body>
 </html>
