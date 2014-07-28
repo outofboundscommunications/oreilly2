@@ -38,51 +38,82 @@ var $windowHeight = $( window ).height();
 //log window dimensions to console
 console.log('window width is: ' +$windowWidth);
 console.log('window height is: ' +$windowHeight);
-//set number of boxes
-var numBoxes=1;
+
+//initialize number of boxes
+var numBoxesToDisplay=1;
+
+//initialize game round counter
+var round=0;
 
 $(document).ready(function ()  {
 
+//add the basic container div to the page
+$("body").append("<div class=\"container\"></div>");
+
 function mysetTimeoutFunction()	{
 	console.log('this is the timeout function');
-	calcNumBoxesToDisplay(numBoxes);
-	displayBoxesToScreen(numBoxes,$windowWidth,$windowHeight);
-	setTimeout(mysetTimeoutFunction,2000);
+	//increment the round by one
+	round =round+1;
+	console.log('the game round is: ' + round);
+	//call the function to calculate the boxes needed, pass in current numBoxes as argument
+	numBoxesToDisplay = calcNumBoxesToDisplay(numBoxesToDisplay,round);
+	console.log('the number of boxes we need to display is: ' + numBoxesToDisplay);
+	//call the function that displays the boxes to the screen
+	displayBoxesToScreen(numBoxesToDisplay,$windowWidth,$windowHeight);
+	//set up timer
+	timer = setTimeout(mysetTimeoutFunction,4000);
 }
+
 mysetTimeoutFunction();
+
+ //create click event for box so user can blow up box by clicking on it
+  $myBox = $("div.box");
+  console.log($myBox);
+  $myBox.click(function() {
+	  $myBox.removeClass("box");
+	  //set box class to 'exploding'
+	  $myBox.addClass("exploding");
+	  //use jquery 'exploding effect to 'blow up' the box
+	  $myBox.toggle("explode");
+	  //remove box completely from DOM
+	  $myBox.remove();
+  });
+
 
 }); 
   
   /////function to figure out number of boxes to display/////
-  function calcNumBoxesToDisplay(numBoxes)	{
-	  console.log('the argument passed in is num boxes to display and is: ' + numBoxes);
+  function calcNumBoxesToDisplay(numBoxesToDisplay,round)	{
 	  //Figure out how many boxes we need to display
 		  //if the game is just started, the numBoxes to display is just one
-		  if (numBoxes ==1)	{
-			  numBoxesToDisplay = numBoxes;
+		  if (numBoxesToDisplay ==1 && round==1)	{
+			  numBoxesToDisplay = 1;
 			  console.log('the number of boxes to display is: ' + numBoxesToDisplay);
+			  return numBoxesToDisplay;
 		  }
 		  //otherwise, just take the numBoxes from prior round and multiply by 2
 		else {
-			numBoxesToDisplay = numBoxes*2;
+			numBoxesToDisplay = numBoxesToDisplay*2;
 			console.log('the number of boxes to display is: ' + numBoxesToDisplay);
+			return numBoxesToDisplay;
 		}
   }
   
   /////function to display boxes to screen/////
-  function displayBoxesToScreen(numBoxes,$windowWidth,$windowHeight)	{
+  function displayBoxesToScreen(numBoxesToDisplay,$windowWidth,$windowHeight)	{
 	//make sure all the boxes fit within the screen
+	for (var i = 0; i <numBoxesToDisplay; i++) {
+		//make sure all the boxes fit within the screen
 		//calculate the x/y coordinates of the box
-		var $x = Math.floor(Math.random() * ($windowWidth-30));
-		var $y = Math.floor(Math.random() * ($windowHeight-30));
-	//set box class initially to 'box'
-	for (var i = 0; i <numBoxes; i++) {
+		var $x = Math.floor(Math.random() * ($windowWidth-80));
+		var $y = Math.floor(Math.random() * ($windowHeight-80));
 		console.log('for box #' + i + ' the x dimension is: ' + $x + ' the y dimension is: ' + $y);
 		//add the box divs to the container div
 		$("<div></div>").appendTo(".container").addClass("box").css({
 			top:$y,
 			left:$x
 		})
+		
 	}
   } 
 
