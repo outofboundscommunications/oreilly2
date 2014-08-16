@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 <!--
 
 lets test and figure out how the timer function works
 -->
 
+=======
+>>>>>>> divboxzero
 <!doctype html>
 <html>
 <head>
@@ -29,7 +32,6 @@ div.exploding {
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"> </script>
 
-<!--add javascript here -->
 <script>
 
 //get window dimensions
@@ -38,6 +40,7 @@ var $windowHeight = $( window ).height();
 //log window dimensions to console
 console.log('window width is: ' +$windowWidth);
 console.log('window height is: ' +$windowHeight);
+<<<<<<< HEAD
 //set number of boxes
 var numBoxes=1;
 
@@ -89,9 +92,116 @@ mysetTimeoutFunction();
 
 
     </script>
+=======
+
+//global variable that keeps track of number of items/boxes to display
+var numBoxesToDisplay=1;
+
+//global counter that keeps track of what round it is in the game
+var round = 0;
+
+/////MAIN FUNCTION HERE //////////////////////////////////////////////////////
+$(document).ready(function ()  {
+
+//add the basic container div to the page
+$("body").append("<div class=\"container\"></div>");
+
+  //define the function that does all the work
+  function mysetTimeoutFunction()	{
+	  console.log('this is the timeout function');
+	  //call function that checks if game over (if no boxes on screen, the game over)
+	  isGameOver();
+	  //set up timer that keeps calling itself every 4 seconds
+	 timer = setTimeout(mysetTimeoutFunction,4000);
+}
+  
+//////MAIN FUNCTION ENDS HERE ///////////////////////////////////////////////
+
+//call the main function
+  mysetTimeoutFunction();
+
+
+//function to calculate if game is over //////////////////////////////////////////////////
+function isGameOver()	{
+	//increment game round counter by one
+	round +=1;
+	console.log('the current round of the game is: ' + round);
+	//select all the boxes in DOM
+	$myBoxes = $("div.box");
+	//calculate how many boxes there are
+	$numberOfBoxes = $myBoxes.length;
+	console.log('the number of boxes is: ' + $numberOfBoxes);
+	//if the game just started, display one box
+	if ($numberOfBoxes ==0 && round ==1)	{
+		//if the number of boxes is zero, AND game just started
+		//we just add one box to screen
+		numBoxesToDisplay = numBoxesToDisplay*1;
+		//now call the function to displays the boxes
+	  	displayBoxesToScreen(numBoxesToDisplay,$windowWidth,$windowHeight);
+	}
+	//else if the number of boxes is zero, AND game is in progress
+	else if ($numberOfBoxes ==0)	{
+		//we double the number of boxes to screen
+		numBoxesToDisplay = numBoxesToDisplay*2;
+		//now call the function to displays the boxes
+	  	displayBoxesToScreen(numBoxesToDisplay,$windowWidth,$windowHeight);
+	}
+	//else there are boxes and time is up so game over
+	else	{
+		alert('oops, sorry. the game is over!')
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+/////function to display boxes to screen////////////////////////////////////////////////////
+function displayBoxesToScreen(numBoxesToDisplay,$windowWidth,$windowHeight)	{
+  //make sure all the boxes fit within the screen
+  for (var i = 0; i <numBoxesToDisplay; i++) {
+	  //make sure all the boxes fit within the screen
+	  //calculate the x/y coordinates of the box
+	  var $x = Math.floor(Math.random() * ($windowWidth-80));
+	  var $y = Math.floor(Math.random() * ($windowHeight-80));
+	  console.log('for box #' + i + ' the x dimension is: ' + $x + ' the y dimension is: ' + $y);
+	  //add the box divs to the container div
+	  $("<div></div>").appendTo(".container").addClass("box").css({
+		  top:$y,
+		  left:$x
+	  })
+  }
+  
+  //add click event to box collection
+  addClickEvent();
+} 
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//click event function for box so user can blow up box by clicking on it/////////////////////
+ function addClickEvent()	{
+	$myBox = $("div.box");
+	console.log($myBox);
+	$myBox.click(function() {
+		$myBox.removeClass("box");
+		//set box class to 'exploding'
+		$myBox.addClass("exploding");
+		//use jquery 'exploding effect to 'blow up' the box
+		$myBox.toggle("explode");
+		//remove box completely from DOM
+		$myBox.remove();
+  	});
+ }
+
+
+}); 
+
+</script>
+>>>>>>> divboxzero
 
 </head>
 <body>
 
 </body>
 </html>
+
