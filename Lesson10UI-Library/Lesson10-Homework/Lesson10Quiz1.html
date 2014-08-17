@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+  <title>Lesson 10 - Quiz 1 - JQuery Library</title>
+  <meta charset="utf-8">
+
+
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
+  
+</head>
+<body>
+
+
+<h2>Question 1:</h2>
+<p>
+Inspect the HTML of the accordion.html example from the lesson (the version with the sortable behavior) after you've loaded the page in the browser, using your browser's element inspection developer tool. What classes have been added to the "accordion" div by jQuery?</p>
+
+<h3>Answer:</h3>
+
+<pre>
+div id="accordion" class="ui-accordion ui-widget ui-helper-reset ui-sortable" role="tablist"
+<br/>
+looks like the class used for this is: <strong>div class="ui-accordion"</strong>
+</pre>
+
+<h2>Question 2:</h2>
+<p>
+Again, inspect the HTML of the accordion.html example from the lesson after you've loaded the page in the browser, using your browser's element inspection developer tool. Now, take a look at the headings and content within the widget (that is, the h1 elements and p elements containing the header and content, respectively). What classes have been added to the h1 and p elements that jQuery can use to identify these as the header and content of each accordion section?</p>
+
+<pre>
+<strong>h1 class</strong>="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all" role="tab" id="ui-accordion-accordion-header-0" aria-controls="ui-accordion-accordion-panel-0" <br/>aria-selected="false" tabindex="-1" span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e" span Home h1
+</pre>
+
+<h3>Answer:</h3>
+<p>looks like the H1 class used for this is: <strong>h1 class="ui-accordion"</strong></p>
+
+<pre>
+
+<strong>p class</strong>="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-accordion-accordion-panel-0" <br/>aria-labelledby="ui-accordion-accordion-header-0" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none; height: 46.79999923706055px;">This is the Home section. /p
+
+</pre>
+
+<h3>Answer:</h3>
+<p>Looks like from the above, the p class is: <strong>p class="ui-accordion-content" </strong></p>
+                                                                                                 
+<h2>Question 3</h2>
+<p>Look at the documentation for the slider widget. Describe in your own words how the "master" slider is created in the example code (relevant portions of the code are also shown below). For instance, what method is used to create the slider widget? What do you think the options that are passed into this method do? Use the API documentation for the slider widget to help you figure out what the various options do.</p>
+
+<p>The portion of the script related to the "master" slider:</p>
+
+<pre>
+// setup master volume
+$( "#master" ).slider({
+      value: 60,
+      orientation: "horizontal",
+      range: "min",
+      animate: true
+});    
+The HTML for the "master" slider:
+
+div id="master" style="width: 260px; margin: 15px;" div
+
+</pre>
+
+<h3>Answer:</h3>
+
+<ol>
+<li>Describe in your own words how the "master" slider is created in the example code:
+	<ul>
+	  <li>On page initialization, the jquery slider method: (1) loads quite a bit of styling and (2) adds an anonymous function to the "master" div # as shown here:<img src="images/sliderSnap.JPG" vspace="5"></li>
+    <li>There is a span element added as well by jquery that handles the state of the slider such as where it is on the screen, how many pixels from the left
+    it has been moved, if the handle is hovered on, clicked on/active, etc (you can see that in above snapshot as well).</li>
+    </ul>
+</li>
+<li>what method is used to create the slider widget?
+	<ul>
+    	<li>slider();</li>
+    </ul>
+    </li>
+<li>What do you think the options that are passed into this method do?
+	<ul>
+	    <li>value: 60,
+        	<ul><li>Sets the initial value of slider at 60%</li></ul>
+        </li>
+        <li>orientation: "horizontal",
+          <ul><li>Sets the slider handles to be horizontal</li></ul>
+        </li>
+        <li>range: "min",
+          <ul><li>Displays from the minimum value to the handle</li></ul>
+        </li>
+        <li>animate: true
+          <ul><li>Defines that the slide handle animates for default duration</li></ul>
+        </li>
+    </ul>
+
+</li>
+</ol>
+
+
+<h2>Question 4:</h2>
+<p>Describe in your own words the differences between a widget and an interaction in the jQuery UI library.</p>
+
+<h3>Answer:</h3>
+
+<ul>
+<li>Widget:
+	<ul><li>A Widget is an actual control of some sort like an accordion, button, menu, dialog box, etc.</li></ul>
+</li>
+<li>Interaction:
+	<ul><li>An interaction adds 'behavior' to the widgets such as: 'draggable', 'resizeable', 'sortable', etc.</li></ul>
+</li>
+</ul>
+
+
+
+</body>
+</html>  

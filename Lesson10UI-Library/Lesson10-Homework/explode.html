@@ -85,9 +85,16 @@ function isGameOver()	{
 		//now call the function to displays the boxes
 	  	displayBoxesToScreen(numBoxesToDisplay,$windowWidth,$windowHeight);
 	}
-	//else there are boxes and time is up so game over
+	//else there are boxes not blown up in time and time is up so game over
 	else	{
-		alert('oops, sorry. the game is over!')
+		//send message to screen that user has lost game
+		alert('oops, sorry. the game is over! ' + 'you managed to get thru: ' + round + ' rounds');
+		//remove the remaining boxes
+		$("div.box").remove();
+		//reset game counter to zero for new game
+		round = 0;
+		//reset number of boxes for new game
+		numBoxesToDisplay = 1;
 	}
 }
 
@@ -100,36 +107,19 @@ function displayBoxesToScreen(numBoxesToDisplay,$windowWidth,$windowHeight)	{
   for (var i = 0; i <numBoxesToDisplay; i++) {
 	  //make sure all the boxes fit within the screen
 	  //calculate the x/y coordinates of the box
-	  var $x = Math.floor(Math.random() * ($windowWidth-80));
-	  var $y = Math.floor(Math.random() * ($windowHeight-80));
+	  var $x = Math.floor(Math.random() * ($windowWidth-100));
+	  var $y = Math.floor(Math.random() * ($windowHeight-100));
 	  console.log('for box #' + i + ' the x dimension is: ' + $x + ' the y dimension is: ' + $y);
 	  //add the box divs to the container div
-	  $("<div></div>").appendTo(".container").addClass("box").css({
-		  top:$y,
-		  left:$x
-	  })
+	  $("<div></div>").appendTo(".container").addClass("box").css({top:$y,left:$x}).bind("click",myClickEvent);
   }
-  
-  //add click event to box collection
-  addClickEvent();
-} 
 
-//////////////////////////////////////////////////////////////////////////////////////////////
+} 
 
 
 //click event function for box so user can blow up box by clicking on it/////////////////////
- function addClickEvent()	{
-	$myBox = $("div.box");
-	console.log($myBox);
-	$myBox.click(function() {
-		$myBox.removeClass("box");
-		//set box class to 'exploding'
-		$myBox.addClass("exploding");
-		//use jquery 'exploding effect to 'blow up' the box
-		$myBox.toggle("explode");
-		//remove box completely from DOM
-		$myBox.remove();
-  	});
+ function myClickEvent()	{
+	$(this).removeClass("box").addClass("exploding").toggle("explode").remove();
  }
 
 
