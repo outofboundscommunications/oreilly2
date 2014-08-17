@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>slider demo</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <style>#slider { margin: 10px; }	</style>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <!-- setup master volume -->
+  <script>
+         $(function() {
+            $("#master").slider({
+               value: 60,
+			  orientation: "horizontal",
+			  range: "max",
+			  animate: true
+            });
+         });
+      </script>
+
+</head>
+<body>
+ 
+<div id="master" style="width: 260px; margin: 15px;"> </div>
+ 
+ 
+</body>
+</html>
