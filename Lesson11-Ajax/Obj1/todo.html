@@ -11,14 +11,18 @@ To change this template use Tools | Templates.
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/cupertino/jquery-ui.css">
   <script src="todo1.js"></script>
   <style>
-        body {
-            font-family: Helvetica, Arial, sans-serif;
-        }
+      #todoList { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+      #todoList li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+      #todoList .ui-selected { background: #F39814; color: white; }
+      #todoList .ui-selecting { background: #FECA40; }
   </style>
 </head>
 <body>
   <h1>My To-Do List</h1>
-  <div id="todoList"><ul id="todoList">
-  </div></ul>
+  <div id="accordion">
+  	<div id="todoList">
+    	<ul id="todoList"></ul>
+    </div>
+  </div>
 </body>
 </html>  
