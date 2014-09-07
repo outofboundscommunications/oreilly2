@@ -10,10 +10,10 @@ function init() {
 	getMyToDoData();
 	 $("#accordion").accordion({
             collapsible: true,
-            header: "> div > ul#todoList > li"
+            header: "> div > h3"
         }).sortable({
             axis: "y",
-            handle: "h1"
+            handle: "h3"
         });
 	
 }
