@@ -20,13 +20,15 @@ function init() {
 
 //end main function ////////
 
-//fetch JSON data
+//function to fetch JSON data and then display
 function getMyToDoData () {
-    $.get("todo.json", function(getTodoData) {
+    //fetch json data using jquery
+	$.get("todo.json", function(getTodoData) {
         console.log("Data loaded successfully");
+		//store json data in global variable called 'data'
         data = getTodoData;
         console.log(data);
-		//add todos to page
+	//now call function to add todos to page
 		addTodosToPage(data);
 		$("#todoList li").addClass("ui-widget-content");
     }, "json");    
