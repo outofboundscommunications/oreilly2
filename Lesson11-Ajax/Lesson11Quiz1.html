@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+  <title>Lesson 10 - Quiz 1 - JQuery Library</title>
+  <meta charset="utf-8">
+
+
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
+<script>
+$("body").load("divs.html div#red"); 
+</script>
+  
+</head>
+<body>
+
+
+<h2>Question 1:</h2>
+<p>
+Under what circumstances would you use load() vs. get() vs. getJSON() in your jQuery program?</p>
+
+<h3>Answer 1:</h3>
+<ul>
+<li>I would use load() if i am going to load a fragement of html from some file on the server to insert html into an element on a page like we did with the ice cream example.One of the advantages to using load() to load content from HTML files, is that you can select elements from
+the file you're loading right in your call to load():</br> 
+<pre>$( "#result" ).load( "ajax/test.html #container" );</pre>
+</li>
+<li>I would use get() if i need to load data from the server using a HTTP GET request like the following: </br>
+
+<pre>
+$.get( "test.php", { name: "John", time: "2pm" } );
+</pre>
+</li>
+<li>I would use getJSON() if i need to load JSON-encoded data from the server using a GET HTTP request, parse the data and display on the page, like this: </br>
+<pre>
+
+
+(function() {
+  var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+  $.getJSON( flickerAPI, {
+    tags: "mount rainier",
+    tagmode: "any",
+    format: "json"
+  })
+    .done(function( data ) {
+      $.each( data.items, function( i, item ) {
+        $( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+        if ( i === 3 ) {
+          return false;
+        }
+      });
+    });
+})();
+
+
+</pre>
+
+
+
+</li>
+</ul>
+
+<h2>Question 2:</h2>
+
+If you have the following HTML in a file named "divs.html":
+<pre>
+h1 Two Divs /h1
+div id="red"  /div
+div id="blue" /div
+And you use Ajax to get this HTML with:
+
+$("body").load("divs.html div#red"); 
+</pre>
+What is loaded into the body of the program from where you are making this jQuery Ajax call?
+
+
+<h3>Answer 2:</h3>
+
+
+
+                                                                                                 
+<h2>Question 3</h2>
+<p>In the second example, when we use get() to retrieve the data to create the graph, we moved the calls to addAxes() and addData() inside complete function that we pass to get(). Why did we do this?</p>
+
+
+<pre>
+var data;
+$.get("graph.json", function(graphData) {
+    console.log("Data loaded successfully");
+    data = graphData;
+    addAxes();
+    addData();
+}, "json");                 
+
+</pre>
+
+<s>addAxes();</s>
+<s>addData();</s>  
+
+
+<h3>Answer:</h3>
+
+
+
+
+
+
+</body>
+</html>  
