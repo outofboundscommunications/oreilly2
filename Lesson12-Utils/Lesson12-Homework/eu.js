@@ -29,7 +29,7 @@ function getEUJsonData () {
     console.log("Data loaded successfully");
 	//store json data
     data = getData;
-    //do something on data
+    //plot the json data on the map
     plotOnMap();
     }, "json");    
 }
@@ -41,9 +41,15 @@ function plotOnMap ()   {
         //store country and rate in variables to use later
         var myCountry = data[i].country;
         var myRate = data[i].rate;
+		//create the div to add to the map as a circle
         $("<div " + "data-country=" + myCountry + " data-rate=" + myRate + "/>" + "</div>")
+		//select the map div, add the data point div and add the classes to style that data point
         .appendTo("div#map").addClass("dataPt").addClass("dataPtHover")
-        .bind("mouseover", displayDetails).css( {
+		//add the hover event to: (1) display the data point details in the details box at top of page and
+		//(2) display the country name just to the side of the data point
+        .bind("hover", displayDetails)
+		//add the styling to the data point div that positions the data point on the correct location on the map
+		.css( {
             position:"absolute",
             left: data[i].x,
             top: data[i].y,
@@ -51,27 +57,27 @@ function plotOnMap ()   {
             height: data[i].rate,
             borderRadius: data[i].rate
         })
-        .bind("hover", displayCountryName);
+		//add the hover event to display the country name just to the side of the data point
+       //.bind("mouseover", displayCountryName);
         
     })
 }
 
-function displayDetails(evt)   {
-    //select the detail text box area at top of page left
-    //add remove any text if already there
-    console.log($(this));
+function displayDetails()   {
+    //this function does two things:
+	//(1) display the data point details in the details box at top of page and
+	//(2) display the country name just to the side of the data point
+	
+	//select the detail text box area at top of page left
+    //remove any text there already
     $("#detail p").remove();
+	//now go ahead and add the currently active/hover country unemployment data in the detail box at top of page
     $("#detail span").append("<p>"+ $(this).attr("data-rate") + "</p>");
-    //var countryName = $(this).attr("data-country");
-    //alert(countryName);
-}
-
-function displayCountryName(evt)   {
-    console.log($(this));
-    //remove country names already displayed
-    $("p").remove();
-    //add text
+	
+	//remove any country names already displayed as a paragraph next to a data point
+	$(".dataPt p").remove();
+	//now go ahead and add the currently active/hover country name as text next to the data point
     $(this).append("<p>"+ $(this).attr("data-country") + "</p>");
 
 }
-                 
+               

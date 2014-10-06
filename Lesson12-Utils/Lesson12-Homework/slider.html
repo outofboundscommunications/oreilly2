@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Slider - Range with fixed maximum</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $( "#slider-range-max" ).slider({
+      range: "max",
+      min: 1,
+      max: 10,
+      value: 2,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( ui.value );
+		console.log(ui.value);
+		var selection = ui.value;
+		//$( ".dataPt" ).text( $( "#slider-range-max" ).slider( "value" ) );
+		console.log(selection);
+      }
+    });
+    $( "#amount" ).val( $( "#slider-range-max" ).slider( "value" ) );
+	 
+	
+  });
+
+  </script>
+</head>
+<body>
+ 
+<p>
+  <label for="amount">Minimum number of bedrooms:</label>
+  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+<p id="myID"></p>
+<div id="slider-range-max"></div>
+<div data-country="Finland" data-rate="8" class="dataPt dataPtHover" style="position: absolute; left: 681px; top: 18px; width: 8px; height: 8px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;"></div>
+<div data-country="Estonia" data-rate="13.6" class="dataPt dataPtHover" style="position: absolute; left: 625px; top: 206px; width: 13.6px; height: 13.6px; border-top-left-radius: 13.6px; border-top-right-radius: 13.6px; border-bottom-right-radius: 13.6px; border-bottom-left-radius: 13.6px;"></div>
+<div data-country="Netherlands" data-rate="4.3" class="dataPt dataPtHover" style="position: absolute; left: 322px; top: 345px; width: 4.3px; height: 4.3px; border-top-left-radius: 4.3px; border-top-right-radius: 4.3px; border-bottom-right-radius: 4.3px; border-bottom-left-radius: 4.3px;"></div>
+ 
+ 
+</body>
+</html>
