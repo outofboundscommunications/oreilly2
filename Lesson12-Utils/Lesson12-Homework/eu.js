@@ -1,25 +1,42 @@
-/**
- * 
- * When getEUJsonData() is .done() loading, how might you call a function which sets up the slider using the .slider() 
- * widget? How might this function select the #slider element with a jQuery selector and set up all the properties of that slider, 
- * including the function which runs when it slides?
-http://api.jqueryui.com/slider/
-
-When you .hover() over a data point, how might you use one function to change the .text() of the span in #detail, 
-and another function to change it back?
-http://api.jquery.com/hover/
-
--John
-
-**/
+//with this v3 i am trying to get slider to modify style data within each element
 
 $(document).ready(function() {
 
 //variable to hold json data
 var data;
+//variable to hold slider selection
+var selection;
 //get json data
+
 getEUJsonData();
+   
+$(function() {
+    $( "#slider-range-max" ).slider({
+      range: "max",
+      min: 1,
+      max: 10,
+      value: 2,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( ui.value );
+		//console.log(ui.value);
+		var selection = ui.value;
+		updateDataPoints(selection);
+      }
+    });
+    $( "#amount" ).val( $( "#slider-range-max" ).slider( "value" ) );
+	
+  });
+
 });
+
+function updateDataPoints(selection)	{
+	console.log(data);
+	console.log('update data points to this value:' + selection);
+	$(data).each(function(i)	{
+		console.log(data[i].rate);
+	});
+	
+}
 
 
 //function to fetch JSON data and then display
@@ -33,7 +50,6 @@ function getEUJsonData () {
     plotOnMap();
     });    
 }
-   
 
 function plotOnMap ()   {
     $(data).each(function(i)    {
@@ -65,7 +81,6 @@ function plotOnMap ()   {
 }
 
 function displayDetails(evt)   {
-    console.log(evt);
 	//this function does two things:
 	//(1) display the data point details in the details box at top of page and
 	//(2) display the country name just to the side of the data point

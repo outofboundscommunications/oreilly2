@@ -46,25 +46,6 @@
   <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
   <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"> </script>
   <script src="eu.js"></script>
-   <script>
-  $(function() {
-    $( "#slider-range-max" ).slider({
-      range: "max",
-      min: 1,
-      max: 10,
-      value: 2,
-      slide: function( event, ui ) {
-        $( "#amount" ).val( ui.value );
-		console.log(ui.value);
-		var selection = ui.value;
-		//$( ".dataPt" ).text( $( "#slider-range-max" ).slider( "value" ) );
-		console.log(selection);
-      }
-    });
-    $( "#amount" ).val( $( "#slider-range-max" ).slider( "value" ) );
-	 
-	
-  });
 
   </script>
 </head>
