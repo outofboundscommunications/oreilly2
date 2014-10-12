@@ -25,13 +25,13 @@ getEUJsonData();
 //function to fetch JSON data and then display
 function getEUJsonData () {
     //fetch json data using jquery
-	$.get("eu.json", function(getData) {
+	$.getJSON("eu.json", function(getData) {
     console.log("Data loaded successfully");
 	//store json data
     data = getData;
     //plot the json data on the map
     plotOnMap();
-    }, "json");    
+    });    
 }
    
 
@@ -44,7 +44,8 @@ function plotOnMap ()   {
 		//create the div to add to the map as a circle
         $("<div " + "data-country=" + myCountry + " data-rate=" + myRate + "/>" + "</div>")
 		//select the map div, add the data point div and add the classes to style that data point
-        .appendTo("div#map").addClass("dataPt").addClass("dataPtHover")
+        //.appendTo("div#map").addClass("dataPt").addClass("dataPtHover")
+		.appendTo("div#map").addClass("dataPt")
 		//add the hover event to: (1) display the data point details in the details box at top of page and
 		//(2) display the country name just to the side of the data point
         .bind("hover", displayDetails)
@@ -55,7 +56,7 @@ function plotOnMap ()   {
             top: data[i].y,
             width: data[i].rate,
             height: data[i].rate,
-            borderRadius: data[i].rate
+            borderRadius: 50
         })
 		//add the hover event to display the country name just to the side of the data point
        //.bind("mouseover", displayCountryName);
@@ -63,11 +64,14 @@ function plotOnMap ()   {
     })
 }
 
-function displayDetails()   {
-    //this function does two things:
+function displayDetails(evt)   {
+    console.log(evt);
+	//this function does two things:
 	//(1) display the data point details in the details box at top of page and
 	//(2) display the country name just to the side of the data point
-	
+	$("div.dataPt").removeClass("dataPtHover");
+	$(this).addClass("dataPtHover");
+	//$("div.dataPt").addClass("dataPtHover");
 	//select the detail text box area at top of page left
     //remove any text there already
     $("#detail p").remove();

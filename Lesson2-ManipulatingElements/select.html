@@ -7,13 +7,16 @@
     .highlight {
         background-color: yellow;
     }
+	.myClass {
+		color:#F00;
+	}
   </style>
   <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
   <script>
 		$(document).ready(function() {
 			var $result = $("a");
 			alert($result.length + " elements matched the selection");
-			$result.addClass("highlight");
+			$result.addClass("highlight").addClass("myClass");
 			});
   </script>
 </head>
