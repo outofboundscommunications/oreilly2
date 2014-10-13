@@ -35,8 +35,12 @@ function updateDataPoints(selection)	{
 	console.log('update data points to this value:' + selection);
 	$(data).each(function(i)	{
 		console.log('the current data rate is: ' + data[i].rate);
-		console.log('the new data rate is: ' + parseFloat(data[i].rate);
+		console.log('the new data rate is: ' + parseFloat(data[i].rate)*parseFloat(selection));
+		//replace current with new value
+		data[i].rate =parseFloat(data[i].rate)*parseFloat(selection);
 	});
+	//now call function to replot these resized data points on map again
+	plotOnMap();
 	
 }
 
