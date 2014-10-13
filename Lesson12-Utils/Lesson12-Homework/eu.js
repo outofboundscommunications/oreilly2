@@ -6,8 +6,8 @@ $(document).ready(function() {
 var data;
 //variable to hold slider selection
 var selection;
-//get json data
 
+//get json data
 getEUJsonData();
    
 $(function() {
@@ -15,11 +15,12 @@ $(function() {
       range: "max",
       min: 1,
       max: 10,
-      value: 2,
+      value: 1,
       slide: function( event, ui ) {
         $( "#amount" ).val( ui.value );
 		//console.log(ui.value);
 		var selection = ui.value;
+		//update the data point size to the value user selected from slider
 		updateDataPoints(selection);
       }
     });
@@ -33,7 +34,8 @@ function updateDataPoints(selection)	{
 	console.log(data);
 	console.log('update data points to this value:' + selection);
 	$(data).each(function(i)	{
-		console.log(data[i].rate);
+		console.log('the current data rate is: ' + data[i].rate);
+		console.log('the new data rate is: ' + parseFloat(data[i].rate);
 	});
 	
 }
