@@ -1,4 +1,11 @@
-//with this v3 i am trying to get slider to modify style data within each element
+//how this application works
+
+//1. make a call to the map data in eu.json and store in a variable ('data')
+
+//2. pass the data variable to a callback function that runs when the call to get the data is .done
+
+//3. select the collection ".dataPt" and run .each() on it
+	//3a. 
 
 $(document).ready(function() {
 
