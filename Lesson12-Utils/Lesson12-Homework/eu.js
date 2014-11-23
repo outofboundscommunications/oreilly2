@@ -16,8 +16,25 @@ $.getJSON("eu.json")
 		alert("!! error - couldn't load graph data!!");
 	});
 
+  
 function plotOnMap ()   {
-    $(data).each(function(i)    {
+     $( "#slider-range-max" ).slider({
+      range: "max",
+      min: 1,
+      max: 10,
+	  step: 1,
+      value: 1,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( ui.value );
+		//console.log(ui.value);
+		var multiplier = ui.value;
+		//call function that updates the data point size to the value user selected from slider
+		plotOnMap(multiplier);
+      }
+    });
+    $( "#amount" ).val( $( "#slider-range-max" ).slider( "value" ) );
+	
+	$(data).each(function(i)    {
         //create div which is the data point on map for each country
         //store country and rate in variables to use later
         var myCountry = data[i].country;
@@ -68,4 +85,6 @@ function displayDetails(evt)   {
 	//now go ahead and add the currently active/hover country unemployment data in the detail box at top of page
     $("#detail span").append("<p>"+ $(this).attr("data-rate") + "</p>");
 }
+
+//end of main
 });
