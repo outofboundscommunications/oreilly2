@@ -59,7 +59,8 @@ function plotDataPoints(data,multiplier)	{
 		var myRate = data[i].rate*multiplier;
 		//$(".dataPt").remove();
 		//create the circle
-		$("<div " + "data-country=" + myCountry + " data-rate=" + myRate + "/>" + "</div>")
+		$("<div " + "data-country=" + myCountry + " data-rate=" + data[i].rate + "/>" + "</div>")
+		//$("<div " + "data-country=" + myCountry + "/>" + "</div>")
 		//select the map div, add the data point div and add the classes to style that data point
 		.appendTo("div#map").addClass("dataPt")
 		//add the hover event to: 
@@ -78,7 +79,7 @@ function plotDataPoints(data,multiplier)	{
 	//end of .each(function(i) loop
 	})
 }
-function displayDetails(evt)   {
+function displayDetails(evt,data)   {
 	//this function does two things:
 	//(1) display the data point details in the details box at top of page and
 	//(2) display the country name just to the side of the data point
@@ -99,8 +100,9 @@ function displayDetails(evt)   {
 	$("div.dataPtHover p").addClass("dataDetail");
 	
 	//now go ahead and add the currently active/hover country unemployment data in the detail box at top of page
-	<!--$("#detail span").append("<p>"+ $(this).attr("data-rate") + "</p>");-->
-	$("#detail span").append("<span>" + "&nbsp;" + $(this).attr("data-rate") + "</span>");
+	var myUnempRate = $(this).attr("data-rate");
+	console.log('the unemplRate is: ' + myUnempRate);
+	$("#detail span").append("<span>" + "&nbsp;" + myUnempRate + "</span>");
 	
 	//end displayDetails(evt)
 }
