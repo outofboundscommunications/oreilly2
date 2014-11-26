@@ -1,5 +1,14 @@
+//NOTES FOR CHANGES ON11.25.2014
+//NEED TO ADD IN FEATURE TO CHANGE COLOR OF MAP CIRCLES DEPENDING ON SIZE
+//AS THE CIRCLES CHANGE SIZE THEY CHANGE COLOR
+//reference for requirement of colors here: https://courses.oreillyschool.com/jquery/QuizzesAndProjects/images/Map1.png
 
-//start of main function /////////////
+//1. default smallest circle color at start is fine as is (light blue small circle, #add2f1
+//2. next larger circle is rgb(aeb6ff) (light purple/blue)
+//3. next step up is rgb(edb2ff) (light purple)
+//4. last largest circle step up is ffc161 (light orange)
+
+///////////////////start of main function /////////////
 
 $(document).ready(function() {
 //make a call to the map data in eu.json and store in a variable ('data') //
@@ -7,15 +16,19 @@ $(document).ready(function() {
 var data;
 //define multiplier which is used by slider to change size of point on screen
 var multiplier = 1;
+//define variable to hold the color of the map circle, based on size user selects from slider
+//set initial color, for the smallest size circle (multiplier = 1)
+var circleColor = "#add2f1";
+
 //get json data
 $.getJSON("eu.json")
 	.done(function(getData)	{
 		console.log("data loaded successfully");
 		data = getData;
-		//call function to make initial plot of data on map
-		plotDataPoints(data,multiplier);
-		//call function to add slider functionality
-		addSlider(data,multiplier);
+		//call initiation function to make initial plot of data on map
+		plotDataPoints(data,multiplier,circleColor);
+		//call the callbackfunction to add slider functionality for user that also 'callsback the plotDataPoints function
+		addSlider(data,multiplier,circleColor);
 	})
 	.fail(function()	{
 		alert("!! error - couldn't load graph data!!");
@@ -23,11 +36,13 @@ $.getJSON("eu.json")
 	
 });
 
-//end of main function //////////////
+///////////////////end of main function //////////////
 
-//function to make initial plot of data on map
-//and also sets up slider
-function addSlider (data,multiplier)   {
+//function to set up slider
+//basically after the initial set up by the plotDataPoints() function, this addSlider function
+//does the rest of the work, taking values from user's slider choices and using those multiplier values
+//to pass into that plotDataPoints() function we called on initiation
+function addSlider (data,multiplier,circleColor)   {
      $( "#slider" ).slider({
       range: "max",
       min: 1,
@@ -41,15 +56,39 @@ function addSlider (data,multiplier)   {
 		console.log('the value of the multiplier is: ' + multiplier);
 		//remove all the data points already plotted
 		$(".dataPt").remove();
+		//reset any colors of circles already set previously back to default color
+		circleColor = '#add2f1';
+		//figure out circle color based on multiplier
+		if (multiplier ==2)	{
+			circleColor = '#aeb6ff'
+		}
+		if (multiplier == 3)	{
+			circleColor = '#edb2ff'
+		}
+		if (multiplier == 4)	{
+			circleColor = '#ffc161'
+		}
+		if (multiplier == 5)	{
+			circleColor = '#ef4c15'
+		}
+		if (multiplier == 6)	{
+			circleColor = '#ef1515'
+		}
+		if (multiplier >= 7)	{
+			circleColor = '#380000'
+		}
 		//now go ahead and replot the data points again 
 		//using the multiplier from the slider
-		plotDataPoints(data,multiplier);
+		plotDataPoints(data,multiplier,circleColor);
       }
     });
 }
 
 //function to plot each point on map
-function plotDataPoints(data,multiplier)	{
+//this function chains the displayDetails() function that is used provide features on user hover over 
+//data points we plot on the map
+function plotDataPoints(data,multiplier,circleColor)	{
+	
 	$(data).each(function(i)    {
 		//create div which is the data point on map for each country
 		//store country and rate in variables to use later
@@ -74,11 +113,16 @@ function plotDataPoints(data,multiplier)	{
 			top: data[i].y,
 			width: myRate,
 			height: myRate,
-			borderRadius: myRate
+			borderRadius: myRate,
+			backgroundColor:circleColor
 		})
 	//end of .each(function(i) loop
 	})
 }
+//function called from the plotDataPoints() function that handles rollever events,
+//displaying data in text boxes next to data points, up in the employment rate/slider box
+//and also to change hover styling/colors on the map points/circles
+
 function displayDetails(evt,data)   {
 	//this function does two things:
 	//(1) display the data point details in the details box at top of page and
