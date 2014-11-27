@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>Lesson 10 - Quiz 1 - JQuery Library</title>
+  <title>Lesson 11 - Quiz 1 - JQuery Library</title>
   <meta charset="utf-8">
 
 
@@ -76,7 +76,7 @@ What is loaded into the body of the program from where you are making this jQuer
 
 <h3>Answer 2:</h3>
 
-
+<pre>the following html is appended to the body tag: div id="red" div </pre>
 
                                                                                                  
 <h2>Question 3</h2>
@@ -100,7 +100,7 @@ $.get("graph.json", function(graphData) {
 
 <h3>Answer:</h3>
 
-
+<p>We don't want those two functions to execute until after we know the data has loaded successfully. If you moved these function calls back out of the callback function, below the call to $.get(), they would try to execute at the same time we are trying to load the data and an error would occur saying the 'data' variable is empty.</p>
 
 
 
